@@ -4,10 +4,15 @@
 @custom-variant dark (&:is(.dark *));
 
 /* =============================================================================
-   Lio "Agentic World" / Bots & Buyers — Design Tokens (ported 1:1 from the
-   production CI). Colors are HSL *triplets* (no hsl() wrapper) so they compose
-   with alpha — e.g. hsl(var(--agent) / 0.6). The @theme block wraps them with
-   hsl() so Tailwind utilities (bg-background, text-agent, …) resolve.
+   Lio "Agentic World" / Bots & Buyers — Design Tokens
+   Refined "Premium" direction (C): warm cream + navy kept; per-world accents
+   kept; Helvetica Neue kept. Refinements: navy-tinted borders + shadows,
+   per-category accent foregrounds for legibility, on-dark accent ramp for the
+   premium feature surfaces, slightly softer 4px radius, calmer elevation.
+
+   Colors are HSL *triplets* (no hsl() wrapper) so they compose with alpha —
+   e.g. hsl(var(--agent) / 0.6). The @theme block wraps them with hsl() so
+   Tailwind utilities (bg-background, text-agent, …) resolve.
    ============================================================================= */
 
 @theme inline {
@@ -53,7 +58,7 @@
   --font-heading: "Helvetica Neue", "Helvetica", Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  /* Radius — deliberately sharp/editorial (~2px) */
+  /* Radius — editorial but a touch softer for the premium feel (~4px) */
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -74,15 +79,15 @@
   --secondary: 36 22% 92%;
   --secondary-foreground: 213 56% 9%;
   --muted: 36 18% 90%;
-  --muted-foreground: 213 15% 38%;
+  --muted-foreground: 211 16% 37%;   /* slate #4D5C68 — navy-tinted, AA on cream/white */
   --accent: 188 28% 37%;             /* teal */
   --accent-foreground: 0 0% 100%;
   --destructive: 11 86% 34%;
   --destructive-foreground: 0 0% 100%;
-  --border: 36 15% 84%;
-  --input: 36 15% 84%;
+  --border: 213 16% 87%;             /* cool, navy-tinted hairline (was warm grey) */
+  --input: 213 16% 87%;
   --ring: 213 56% 9%;
-  --radius: 0.125rem;
+  --radius: 0.25rem;                 /* 4px — premium-soft, still sharp */
 
   /* ---- Lio brand palette ---- */
   --lio-navy: 213 56% 9%;            /* #0A1624 */
@@ -93,15 +98,21 @@
   --lio-cream: 36 25% 96%;           /* #F7F5F2 */
   --lio-ink: 213 56% 9%;             /* #0A1624 */
 
-  /* ---- Category accent system (set data-agent="<cat>" to re-theme) ---- */
+  /* ---- Category accent system (set data-agent="<cat>" to re-theme) ----
+     Each category defines three things:
+       --agent              base accent
+       --agent-foreground   readable text/icon color ON the base accent
+       --agent-on-dark      brightened accent used inside dark feature surfaces  */
   --agent-services: var(--lio-navy);
   --agent-srm: var(--lio-sand);
   --agent-p2p: var(--lio-sage);
   --agent-s2c: var(--lio-teal);
   --agent-p2s: 42 92% 45%;           /* amber #DC9D09 */
-  --agent-others: 213 15% 38%;       /* slate #525F6F */
+  --agent-others: 211 16% 37%;       /* slate #4D5C68 */
+
   --agent: var(--agent-services);
   --agent-foreground: 0 0% 100%;
+  --agent-on-dark: 197 52% 60%;      /* sky — services accent is unreadable on navy */
 }
 
 .dark {
@@ -121,18 +132,20 @@
   --accent-foreground: 36 25% 96%;
   --destructive: 11 86% 52%;
   --destructive-foreground: 0 0% 100%;
-  --border: 209 30% 18%;
-  --input: 209 30% 18%;
+  --border: 209 30% 22%;
+  --input: 209 30% 22%;
   --ring: 36 25% 96%;
 }
 
-/* ---- Category theming switch (drop data-agent on any container) ---- */
-[data-agent="services"] { --agent: var(--agent-services); }
-[data-agent="srm"]      { --agent: var(--agent-srm); }
-[data-agent="p2p"]      { --agent: var(--agent-p2p); }
-[data-agent="s2c"]      { --agent: var(--agent-s2c); }
-[data-agent="p2s"]      { --agent: var(--agent-p2s); }
-[data-agent="others"]   { --agent: var(--agent-others); }
+/* ---- Category theming switch (drop data-agent on any container) ----
+   Sets the base accent, the readable on-accent foreground, and the brightened
+   on-dark accent (used by .lio-surface-light / .lio-plate). */
+[data-agent="services"] { --agent: var(--agent-services); --agent-foreground: 0 0% 100%;   --agent-on-dark: 197 52% 60%; }
+[data-agent="srm"]      { --agent: var(--agent-srm);      --agent-foreground: 213 56% 9%;  --agent-on-dark: 24 40% 72%;  }
+[data-agent="p2p"]      { --agent: var(--agent-p2p);      --agent-foreground: 184 45% 11%; --agent-on-dark: 178 33% 64%; }
+[data-agent="s2c"]      { --agent: var(--agent-s2c);      --agent-foreground: 0 0% 100%;   --agent-on-dark: 190 34% 60%; }
+[data-agent="p2s"]      { --agent: var(--agent-p2s);      --agent-foreground: 36 80% 8%;   --agent-on-dark: 42 92% 56%;  }
+[data-agent="others"]   { --agent: var(--agent-others);   --agent-foreground: 0 0% 100%;   --agent-on-dark: 205 18% 72%; }
 
 @layer base {
   * {
@@ -145,7 +158,7 @@
   h1, h2, h3, h4 {
     font-family: var(--font-serif);
     font-weight: 400;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.022em;
     text-wrap: balance;
   }
 }
@@ -155,9 +168,10 @@
    ============================================================================= */
 .display-num {
   font-family: var(--font-serif);
-  font-weight: 400;
-  letter-spacing: -0.04em;
+  font-weight: 600;                 /* premium: numerals carry a little more weight */
+  letter-spacing: -0.035em;
   font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
 }
 .label-uppercase {
   text-transform: uppercase;
@@ -169,11 +183,13 @@
 /* =============================================================================
    SIGNATURE SURFACES & DECORATION (category-tinted via --agent)
    ============================================================================= */
+
+/* Calmer, navy-tinted elevation (was a heavy navy + accent double shadow). */
 .shadow-lio {
   box-shadow:
-    inset 0 1px #ffffffb3,
-    0 24px 60px -28px hsl(var(--lio-navy) / 0.18),
-    0 2px 8px -4px hsl(var(--agent) / 0.18);
+    inset 0 1px hsl(0 0% 100% / 0.6),
+    0 1px 2px hsl(var(--lio-navy) / 0.05),
+    0 18px 36px -24px hsl(var(--lio-navy) / 0.22);
 }
 .lio-hairline {
   height: 1px;
@@ -202,25 +218,64 @@
   text-transform: uppercase;
   font-weight: 600;
 }
+
+/* ---------------------------------------------------------------------------
+   PREMIUM FEATURE SURFACE
+   .lio-surface-light is reused on every "impact / hero" surface (home budget
+   CTA, funnel ROI, ROI-calculator output, checkout recap, case-study outcome).
+   In the C direction these become dark navy plates. We redeclare the semantic
+   tokens *inside* the surface so the existing utility classes used by the
+   components (text-foreground, text-muted-foreground, bg-agent, text-agent,
+   text-agent-foreground, border-border) automatically recolor — no per-element
+   class changes needed.
+   --------------------------------------------------------------------------- */
 .lio-surface-light {
+  /* scoped token overrides → everything inside recolors for a dark plate */
+  --foreground: 36 25% 96%;          /* cream text */
+  --muted-foreground: 36 16% 78%;    /* muted cream */
+  --border: 36 25% 96%;              /* light hairlines (used at /60 by components) */
+  --agent: var(--agent-on-dark);     /* brightened accent for numerals + dot */
+  --agent-foreground: 213 56% 9%;    /* ink — accent is now light, so chips read dark */
+
   position: relative;
   isolation: isolate;
+  border-radius: 10px;
+  border: 1px solid hsl(var(--agent) / 0.45);
+  color: hsl(var(--foreground));
   background:
-    radial-gradient(120% 70% at 100% 0%, hsl(var(--agent) / 0.18) 0%, transparent 55%),
-    radial-gradient(90% 70% at 0% 100%, hsl(var(--agent) / 0.1) 0%, transparent 60%),
-    linear-gradient(160deg, hsl(var(--lio-cream)), #fbfaf8);
-  border: 1px solid hsl(var(--agent) / 0.25);
+    radial-gradient(80% 70% at 100% 0%, hsl(var(--agent) / 0.30) 0%, transparent 60%),
+    radial-gradient(70% 60% at 0% 100%, hsl(var(--agent) / 0.16) 0%, transparent 65%),
+    linear-gradient(165deg, hsl(var(--lio-slate)), hsl(var(--lio-navy)));
   box-shadow:
-    inset 0 1px #ffffffb3,
-    0 24px 60px -28px hsl(var(--lio-navy) / 0.18),
-    0 2px 8px -4px hsl(var(--agent) / 0.18);
+    0 24px 52px -26px hsl(var(--lio-navy) / 0.5),
+    0 0 0 1px hsl(var(--agent) / 0.22);
 }
+
+/* Chapter plate (agent detail). Swap `lio-stage` → `lio-plate` on that one
+   element so the chapter plate reads as a dark banner while the login keeps
+   its warm cream stage. */
+.lio-plate {
+  --foreground: 36 25% 96%;
+  --muted-foreground: 36 16% 74%;
+  --agent: var(--agent-on-dark);
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: hsl(var(--foreground));
+  background:
+    radial-gradient(72% 72% at 88% 8%, hsl(var(--agent) / 0.42) 0%, transparent 60%),
+    linear-gradient(165deg, hsl(var(--lio-slate)), hsl(var(--lio-navy)));
+  box-shadow: 0 18px 40px -24px hsl(var(--lio-navy) / 0.45);
+}
+
+/* Warm cream stage — login background + soft section grounds (kept light). */
 .lio-stage {
   position: relative;
   isolation: isolate;
   background:
-    radial-gradient(60% 50% at 85% 12%, hsl(var(--agent) / 0.18) 0%, transparent 60%),
-    radial-gradient(55% 45% at 8% 95%, hsl(var(--agent) / 0.1) 0%, transparent 65%),
+    radial-gradient(60% 50% at 85% 12%, hsl(var(--agent) / 0.16) 0%, transparent 60%),
+    radial-gradient(55% 45% at 8% 95%, hsl(var(--agent) / 0.09) 0%, transparent 65%),
     linear-gradient(180deg, #fbfaf8, hsl(var(--lio-cream)) 55%, #efebe6);
 }
 .dark .lio-stage {
@@ -236,7 +291,7 @@
     radial-gradient(80% 60% at 100% 0%, hsl(var(--agent) / 0.35) 0%, transparent 60%);
 }
 .lio-mega {
-  background: linear-gradient(180deg, hsl(var(--lio-ink)), hsl(var(--lio-slate)) 60%, hsl(var(--agent)) 130%);
+  background: linear-gradient(176deg, hsl(var(--lio-ink)), hsl(var(--lio-slate)) 55%, hsl(var(--agent)) 128%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -246,6 +301,20 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+/* ---------------------------------------------------------------------------
+   DATA-VIZ POLISH — slider (Base UI data-slot hooks; no component edits)
+   --------------------------------------------------------------------------- */
+[data-slot="slider-range"] {
+  background: linear-gradient(90deg,
+    color-mix(in oklab, hsl(var(--agent)) 62%, hsl(var(--lio-navy))),
+    hsl(var(--agent)));
+}
+[data-slot="slider-thumb"] {
+  box-shadow:
+    0 0 0 4px hsl(var(--agent) / 0.18),
+    0 1px 3px hsl(var(--lio-navy) / 0.3);
 }
 
 /* =============================================================================

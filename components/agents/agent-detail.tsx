@@ -134,7 +134,7 @@ function IntroStop({ agent }: { agent: Agent }) {
       </div>
 
       {/* chapter plate */}
-      <div className="lio-stage lio-rise lio-rise-1 relative flex h-36 items-center justify-between overflow-hidden rounded-lg border border-agent/20 px-6">
+      <div className="lio-plate lio-rise lio-rise-1 relative flex h-36 items-center justify-between overflow-hidden rounded-lg border border-agent/20 px-6">
         <div>
           <p className="display-num text-6xl leading-none text-agent/90">{chapter}</p>
           <p className="label-uppercase mt-1 text-muted-foreground">Chapter</p>

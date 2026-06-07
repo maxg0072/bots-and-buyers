@@ -18,11 +18,11 @@ type Cat = "services" | "srm" | "p2p" | "s2c" | "p2s" | "others";
 
 const HUB: { href: string; label: string; desc: string; icon: LucideIcon; cat: Cat }[] = [
   { href: "/agents", label: "Agent Booklet", desc: "All 32 agents, six worlds", icon: Bot, cat: "p2p" },
-  { href: "/millionaire", label: "Wer wird Millionär", desc: "Test your procurement IQ", icon: Trophy, cat: "p2s" },
+  { href: "/me", label: "My set-up", desc: "Your agents & ROI", icon: Sparkles, cat: "services" },
   { href: "/agenda", label: "Agenda", desc: "What's on, and when", icon: CalendarClock, cat: "srm" },
   { href: "/workshops", label: "Workshops", desc: "Deep-dives & topics", icon: GraduationCap, cat: "s2c" },
   { href: "/map", label: "Lageplan", desc: "Find your way around", icon: MapPinned, cat: "others" },
-  { href: "/me", label: "My set-up", desc: "Your agents & ROI", icon: Sparkles, cat: "services" },
+  { href: "/millionaire", label: "Wer wird Millionär", desc: "Test your procurement IQ", icon: Trophy, cat: "p2s" },
 ];
 
 export default async function HomePage() {

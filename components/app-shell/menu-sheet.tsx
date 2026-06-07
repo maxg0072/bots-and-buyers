@@ -23,10 +23,10 @@ import {
 import { cn } from "@/lib/utils";
 
 const LINKS: { href: string; label: string; icon: LucideIcon; desc: string }[] = [
-  { href: "/agenda", label: "Agenda", icon: CalendarClock, desc: "Sessions & timings" },
-  { href: "/map", label: "Lageplan", icon: MapPinned, desc: "Find your way around" },
-  { href: "/workshops", label: "Workshops", icon: GraduationCap, desc: "Topics & rooms" },
   { href: "/me", label: "My set-up", icon: User, desc: "Your agents & ROI" },
+  { href: "/agenda", label: "Agenda", icon: CalendarClock, desc: "Sessions & timings" },
+  { href: "/workshops", label: "Workshops", icon: GraduationCap, desc: "Topics & rooms" },
+  { href: "/map", label: "Lageplan", icon: MapPinned, desc: "Find your way around" },
 ];
 
 const rowClass =
