@@ -76,6 +76,26 @@ export function LoginForm() {
         <span className="text-sm text-foreground">I&apos;m already a Lio customer</span>
       </label>
 
+      <label className="flex cursor-pointer items-start gap-3 px-1">
+        <input
+          type="checkbox"
+          name="marketingConsent"
+          className="mt-0.5 h-4 w-4 shrink-0 accent-accent"
+        />
+        <span className="text-xs leading-snug text-muted-foreground">
+          Lio may contact me about my set-up and follow up after the event. See the{" "}
+          <a
+            href="https://lio.ai/privacy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-foreground underline underline-offset-2"
+          >
+            privacy notice
+          </a>
+          .
+        </span>
+      </label>
+
       {state.error && (
         <p className="text-sm text-destructive" role="alert">
           {state.error}

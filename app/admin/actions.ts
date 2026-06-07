@@ -2,8 +2,17 @@
 
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import { headers } from "next/headers";
 import { z } from "zod";
-import { grantAdmin, revokeAdmin, verifyAdminCode, isAdminRequest } from "@/lib/admin";
+import {
+  grantAdmin,
+  revokeAdmin,
+  verifyAdminCode,
+  isAdminRequest,
+  adminRateLimited,
+  recordAdminAttempt,
+  clearAdminAttempts,
+} from "@/lib/admin";
 import { getCurrentParticipant, participantIsAdmin } from "@/lib/auth";
 import { db } from "@/lib/db";
 
@@ -20,9 +29,19 @@ export async function enterAdmin(
   if (!participantIsAdmin(p)) {
     return { error: "Admin access is restricted to the Lio admin account." };
   }
+  // Rate-limit brute force by client IP (the TOTP code is only 6 digits).
+  const h = await headers();
+  const ip = (h.get("x-forwarded-for") || "").split(",")[0]?.trim() || "unknown";
+  if (await adminRateLimited(ip)) {
+    return { error: "Too many attempts. Please wait a few minutes and try again." };
+  }
   // ... and present a valid authenticator code.
   const code = String(formData.get("code") || "");
-  if (!verifyAdminCode(code)) return { error: "Invalid or expired code." };
+  if (!verifyAdminCode(code)) {
+    await recordAdminAttempt(ip);
+    return { error: "Invalid or expired code." };
+  }
+  await clearAdminAttempts(ip);
   await grantAdmin();
   redirect("/admin");
 }

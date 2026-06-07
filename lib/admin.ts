@@ -56,6 +56,30 @@ export function verifyAdminCode(code: string): boolean {
   return totpSecret.length > 0 && verifyTotp(code, totpSecret);
 }
 
+/* ------------------------- brute-force rate limit ------------------------ */
+
+const ADMIN_MAX_ATTEMPTS = 5;
+const ADMIN_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
+
+/** True if this client (IP) has too many recent failed admin attempts. */
+export async function adminRateLimited(key: string): Promise<boolean> {
+  const since = new Date(Date.now() - ADMIN_WINDOW_MS);
+  const recent = await db.adminLoginAttempt.count({
+    where: { key, createdAt: { gte: since } },
+  });
+  return recent >= ADMIN_MAX_ATTEMPTS;
+}
+
+/** Record a failed admin attempt (for rate limiting). */
+export async function recordAdminAttempt(key: string): Promise<void> {
+  await db.adminLoginAttempt.create({ data: { key } });
+}
+
+/** Clear a client's failed-attempt history (call after a successful unlock). */
+export async function clearAdminAttempts(key: string): Promise<void> {
+  await db.adminLoginAttempt.deleteMany({ where: { key } });
+}
+
 /* ----------------------------- dashboard data ---------------------------- */
 
 function parseInputs(json: string | null): Record<string, number> | undefined {
@@ -73,6 +97,7 @@ export interface AdminParticipant {
   name: string;
   company: string | null;
   isExistingCustomer: boolean;
+  marketingConsent: boolean;
   createdAt: string;
   agentsBacked: number;
   allocated: number;
@@ -97,7 +122,7 @@ export interface AdminRequest {
   status: string;
   note: string | null;
   createdAt: string;
-  participant: { name: string; email: string; company: string | null; isExistingCustomer: boolean };
+  participant: { name: string; email: string; company: string | null; isExistingCustomer: boolean; marketingConsent: boolean };
   agents: { name: string; amountEur: number }[];
   hardEur: number;
   ftes: number;
@@ -168,6 +193,7 @@ export async function getAdminData(): Promise<AdminData> {
       name: p.name,
       company: p.company,
       isExistingCustomer: p.isExistingCustomer,
+      marketingConsent: p.marketingConsent,
       createdAt: p.createdAt.toISOString(),
       agentsBacked: backed.length,
       allocated,
@@ -192,6 +218,7 @@ export async function getAdminData(): Promise<AdminData> {
           email: p.email,
           company: p.company,
           isExistingCustomer: p.isExistingCustomer,
+          marketingConsent: p.marketingConsent,
         },
         agents: named.slice(0, 6),
         hardEur,

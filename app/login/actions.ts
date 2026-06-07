@@ -17,6 +17,7 @@ const schema = z.object({
     .regex(EMAIL_RE, "Enter a valid email address."),
   company: z.string().trim().max(160).optional(),
   isExistingCustomer: z.boolean().optional(),
+  marketingConsent: z.boolean().optional(),
 });
 
 export interface LoginState {
@@ -33,6 +34,7 @@ export async function loginAction(
     email: formData.get("email"),
     company: (formData.get("company") as string) || undefined,
     isExistingCustomer: formData.get("isExistingCustomer") === "on",
+    marketingConsent: formData.get("marketingConsent") === "on",
   });
 
   if (!parsed.success) {
@@ -45,7 +47,7 @@ export async function loginAction(
   }
 
   const email = parsed.data.email.toLowerCase();
-  const { name, company, isExistingCustomer } = parsed.data;
+  const { name, company, isExistingCustomer, marketingConsent } = parsed.data;
 
   let participantId: string;
   try {
@@ -55,12 +57,14 @@ export async function loginAction(
         name,
         company: company || null,
         isExistingCustomer: !!isExistingCustomer,
+        marketingConsent: !!marketingConsent,
       },
       create: {
         email,
         name,
         company: company || null,
         isExistingCustomer: !!isExistingCustomer,
+        marketingConsent: !!marketingConsent,
       },
     });
     participantId = participant.id;

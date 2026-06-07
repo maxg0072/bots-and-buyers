@@ -19,6 +19,7 @@ model Participant {
   name               String
   company            String?
   isExistingCustomer Boolean  @default(false)
+  marketingConsent   Boolean  @default(false)
   isAdmin            Boolean  @default(false)
   locale             String   @default("en")
   createdAt          DateTime @default(now())
@@ -73,4 +74,13 @@ model QuizResult {
   createdAt     DateTime    @default(now())
 
   @@index([participantId])
+}
+
+/// Failed admin TOTP attempts - brute-force rate limiting, keyed by client IP.
+model AdminLoginAttempt {
+  id        String   @id @default(cuid())
+  key       String
+  createdAt DateTime @default(now())
+
+  @@index([key, createdAt])
 }
