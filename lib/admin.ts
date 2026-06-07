@@ -1,83 +1,13 @@
 import "server-only";
-import { cookies } from "next/headers";
-import { SignJWT, jwtVerify } from "jose";
 import { db } from "./db";
 import { getCurrentParticipant, participantIsAdmin } from "./auth";
 import { roiContribution, hoursToFte } from "./calculators";
 import { getAgent } from "./agents";
 import { ONE_MILLION } from "./format";
-import { verifyTotp } from "./totp";
 
-const ADMIN_COOKIE = "bb_admin";
-const secret = new TextEncoder().encode(
-  process.env.SESSION_SECRET || "dev-only-insecure-secret-change-me",
-);
-
-/** True only when signed in as the admin email AND a valid TOTP code was entered. */
+/** Admin access is the email gate only: signed in as the admin account. */
 export async function isAdminRequest(): Promise<boolean> {
-  const p = await getCurrentParticipant();
-  if (!participantIsAdmin(p)) return false; // must be signed in as the admin email
-
-  const store = await cookies();
-  const token = store.get(ADMIN_COOKIE)?.value;
-  if (!token) return false; // must have passed the verification code
-  try {
-    await jwtVerify(token, secret);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-export async function grantAdmin(): Promise<void> {
-  const token = await new SignJWT({ admin: true })
-    .setProtectedHeader({ alg: "HS256" })
-    .setIssuedAt()
-    .setExpirationTime("1d")
-    .sign(secret);
-  const store = await cookies();
-  store.set(ADMIN_COOKIE, token, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    path: "/",
-    maxAge: 60 * 60 * 24,
-  });
-}
-
-export async function revokeAdmin(): Promise<void> {
-  const store = await cookies();
-  store.delete(ADMIN_COOKIE);
-}
-
-/** Verify a 6-digit authenticator (TOTP) code against ADMIN_TOTP_SECRET. */
-export function verifyAdminCode(code: string): boolean {
-  const totpSecret = process.env.ADMIN_TOTP_SECRET || "";
-  return totpSecret.length > 0 && verifyTotp(code, totpSecret);
-}
-
-/* ------------------------- brute-force rate limit ------------------------ */
-
-const ADMIN_MAX_ATTEMPTS = 5;
-const ADMIN_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
-
-/** True if this client (IP) has too many recent failed admin attempts. */
-export async function adminRateLimited(key: string): Promise<boolean> {
-  const since = new Date(Date.now() - ADMIN_WINDOW_MS);
-  const recent = await db.adminLoginAttempt.count({
-    where: { key, createdAt: { gte: since } },
-  });
-  return recent >= ADMIN_MAX_ATTEMPTS;
-}
-
-/** Record a failed admin attempt (for rate limiting). */
-export async function recordAdminAttempt(key: string): Promise<void> {
-  await db.adminLoginAttempt.create({ data: { key } });
-}
-
-/** Clear a client's failed-attempt history (call after a successful unlock). */
-export async function clearAdminAttempts(key: string): Promise<void> {
-  await db.adminLoginAttempt.deleteMany({ where: { key } });
+  return participantIsAdmin(await getCurrentParticipant());
 }
 
 /* ----------------------------- dashboard data ---------------------------- */

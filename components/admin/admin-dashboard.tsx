@@ -13,7 +13,6 @@ import {
 import { LioLogo } from "@/components/lio-logo";
 import { formatEur, formatEurFull, formatInt } from "@/lib/format";
 import type { AdminData } from "@/lib/admin";
-import { exitAdmin } from "@/app/admin/actions";
 import { CATEGORY_SHORT } from "@/lib/agents";
 import { RequestStatus } from "./request-status";
 
@@ -68,12 +67,12 @@ export function AdminDashboard({ data }: { data: AdminData }) {
             >
               <Download className="h-3.5 w-3.5" /> Export CSV
             </a>
-            <form action={exitAdmin}>
+            <form action="/api/auth/logout" method="post">
               <button
                 type="submit"
                 className="flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
               >
-                <LogOut className="h-3.5 w-3.5" /> Exit
+                <LogOut className="h-3.5 w-3.5" /> Log out
               </button>
             </form>
           </div>
