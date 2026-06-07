@@ -1,0 +1,3796 @@
+[
+  {
+    "id": "guided-buying",
+    "name": "Guided Buying Agent",
+    "category": "p2p",
+    "tagline": "Compliant purchasing for every employee - in the tools your requesters already use.",
+    "intro": {
+      "description": "When the procurement process is painful, requesters bypass it. The Guided Buying Agent meets requesters in email or Microsoft Teams and creates a compliant Purchase Request (PR) in 30 seconds - not 20 minutes of portal navigation.",
+      "flow": [
+        "Requester asks",
+        "Agent guides to right channel",
+        "Auto-creates compliant PR",
+        "Compliant Purchase Order (PO)"
+      ],
+      "impact": [
+        {
+          "label": "Maverick spend",
+          "value": "-75%",
+          "sub": "vs. baseline"
+        },
+        {
+          "label": "Catalogue quota",
+          "value": "90%+",
+          "sub": "on-contract spend"
+        },
+        {
+          "label": "Time to PR",
+          "value": "30 s",
+          "sub": "vs. ~20 min"
+        },
+        {
+          "label": "Compliance",
+          "value": "99%+",
+          "sub": "automated"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Maverick spend recapture",
+          "value": "75%",
+          "sub": "Lio benchmark"
+        },
+        {
+          "label": "Avg. negotiated savings",
+          "value": "10%",
+          "sub": "on recaptured spend"
+        }
+      ],
+      "calculator": {
+        "headline": "Hard savings recovered from compliance",
+        "inputs": [
+          {
+            "id": "maverick",
+            "label": "Maverick spend p.a.",
+            "unit": "€",
+            "min": 1000000,
+            "max": 500000000,
+            "default": 50000000,
+            "step": 1000000,
+            "format": "«ref»"
+          },
+          {
+            "id": "savingsRate",
+            "label": "Avg. negotiated savings rate",
+            "unit": "%",
+            "min": 3,
+            "max": 20,
+            "default": 10,
+            "step": 1
+          }
+        ],
+        "formulaSource": "e=>{const t=e.maverick*.75*(e.savingsRate/100);return[{label:\"Maverick share recaptured\",value:75,unit:\"%\",display:\"75%\"},{label:\"Hard savings p.a.\",value:t,unit:\"€\",highlight:!0,display:U(t)}]}"
+      },
+      "rationale": "Compliance becomes the path of least resistance, not the friction point. The agent meets requesters where they already work and only asks the right questions."
+    },
+    "caseStudy": {
+      "client": "European Business Services Group",
+      "clientMeta": "Professional services · 11,000 employees · €240M indirect spend",
+      "headline": {
+        "value": "56% → 14%",
+        "label": "Maverick spend after 12 months",
+        "sub": "First 12 months · 11,000 requesters"
+      },
+      "stats": [
+        {
+          "label": "Catalogue quota",
+          "value": "47% → 92%"
+        },
+        {
+          "label": "Time to PR",
+          "value": "18 min → 28 s"
+        },
+        {
+          "label": "Buyer rework",
+          "value": "-63%"
+        }
+      ],
+      "quote": {
+        "text": "Within three months of rolling out the Guided Buying Agent, people actually started coming to us. The agent made ordering feel as simple as messaging a coworker - and procurement became the path of least resistance.",
+        "role": "Group Chief Procurement Officer (CPO), European Business Services Group"
+      }
+    },
+    "deepDive": {
+      "template": "non-compliance",
+      "tabLabel": "Cost of non-compliance",
+      "header": "Cost of non-compliance",
+      "subtitle": "What unmanaged maverick buying costs you today.",
+      "pockets": [
+        {
+          "title": "Maverick spend leakage",
+          "value": "16%",
+          "context": "of negotiated savings leak via off-contract purchases.",
+          "source": "ProcureCon Indirect (2025)."
+        },
+        {
+          "title": "Off-contract pricing premium",
+          "value": "up to 25%",
+          "context": "average price premium paid when employees go around catalogs and framework deals.",
+          "source": "APQC PCF, Hackett indirect benchmarks."
+        },
+        {
+          "title": "Supplier proliferation",
+          "value": "40%+",
+          "context": "of one-time vendors never go through full vetting - supplier risk and master-data debt accumulates.",
+          "source": "EY Supplier Risk (2025)."
+        }
+      ],
+      "calloutTitle": "Total exposure on €500M indirect spend: €15-25M / year",
+      "calloutBody": "The Guided Buying agent recaptures most of this by making the compliant path the path of least resistance.",
+      "sourcesLine": "Sources: ProcureCon (2025), APQC PCF, Hackett, EY (2025)."
+    }
+  },
+  {
+    "id": "pr-review",
+    "name": "PR Review Agent",
+    "category": "p2p",
+    "tagline": "From Purchase Request (PR) to Purchase Order (PO): autonomous, compliant, no buyer touch.",
+    "intro": {
+      "description": "Every Monday a buyer opens 60 Purchase Requests. Half are missing a cost center, a quarter route through the wrong approval flow, some are split to dodge the approval threshold, a handful belong to a catalog the requester forgot. The buyer spends a full morning routing, fixing approver chains, and converting clean PRs to POs by hand - every week, while strategic talent gets stuck in transactional plumbing.",
+      "flow": [
+        "PR submitted",
+        "Compliance check",
+        "Build approval flow",
+        "Resolve exceptions",
+        "Convert to PO"
+      ],
+      "impact": [
+        {
+          "label": "Auto-conversion",
+          "value": "85%+",
+          "sub": "PRs → POs untouched"
+        },
+        {
+          "label": "Compliance",
+          "value": "99%+",
+          "sub": "vs. ~70% manual"
+        },
+        {
+          "label": "Cycle time",
+          "value": "minutes",
+          "sub": "vs. days of buyer queue"
+        },
+        {
+          "label": "Buyer touches",
+          "value": "0",
+          "sub": "for clean PRs"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Current hours/week per Full-Time Equivalent (FTE)",
+          "value": "12 h",
+          "sub": "PR review, routing, fixes"
+        },
+        {
+          "label": "Lio reduction",
+          "value": "85%",
+          "sub": "PRs auto-converted"
+        },
+        {
+          "label": "Compliance",
+          "value": "70% → 99%+",
+          "sub": "every check, every time"
+        }
+      ],
+      "calculator": {
+        "headline": "Hours freed per week, per operational-buyer FTE",
+        "inputs": [
+          {
+            "id": "ftes",
+            "label": "FTEs reviewing PRs",
+            "unit": "FTEs",
+            "min": 1,
+            "max": 100,
+            "default": 20,
+            "step": 1
+          },
+          {
+            "id": "current",
+            "label": "Current hours/week per FTE on PR review",
+            "unit": "h",
+            "min": 3,
+            "max": 30,
+            "default": 12,
+            "step": 0.5
+          },
+          {
+            "id": "reduction",
+            "label": "Lio reduction",
+            "unit": "%",
+            "min": 40,
+            "max": 99,
+            "default": 85,
+            "step": 5
+          }
+        ],
+        "formulaSource": "e=>{const t=e.current*(e.reduction/100),n=t*e.ftes;return[{label:\"Hours freed per week, per FTE\",value:t,unit:\"h\",highlight:!0,display:`~${t.toFixed(1)} h/wk`},{label:\"Team total per week\",value:n,unit:\"h\",display:`~${Math.round(n)} h/wk`},{label:\"Team total per month\",value:n*4.33,unit:\"h\",display:`~${Math.round(n*4.33)} h/mo`},{label:\"Team total per year\",value:n*46,unit:\"h\",display:`~${Math.round(n*46).toLocaleString(\"en-US\")} h/yr`}]}"
+      },
+      "rationale": "Lio customer data: global Tier-1 manufacturer 75% → 99.6% automation in 6 months."
+    },
+    "caseStudy": {
+      "client": "Global Tier-1 Industrial Manufacturer",
+      "clientMeta": "Diversified industrial · 60,000+ employees · 240,000 PRs p.a.",
+      "headline": {
+        "value": "99.8%",
+        "label": "PR-to-PO execution quality",
+        "sub": "First 12 months · 240,000 PRs processed"
+      },
+      "stats": [
+        {
+          "label": "Hours freed",
+          "value": "27,200"
+        },
+        {
+          "label": "Cycle time",
+          "value": "8.5 d → 4 min"
+        },
+        {
+          "label": "Recognition",
+          "value": "Best-in-Class Artificial Intelligence (AI) Award"
+        }
+      ],
+      "quote": {
+        "text": "The team was spending most of their time turning PRs into POs. We needed strategic capacity, not more headcount. Six months in, the agent has 99.8% execution quality - including the most complex processes.",
+        "role": "Chief Procurement Officer, Global Tier-1 Industrial Manufacturer"
+      }
+    },
+    "deepDive": {
+      "template": "non-compliance",
+      "tabLabel": "Cost of non-compliance",
+      "header": "Cost of non-compliance",
+      "subtitle": "What rushed PR-to-PO conversion costs you today.",
+      "pockets": [
+        {
+          "title": "Skipped compliance checks",
+          "value": "~30%",
+          "context": "of compliance checks get shortcut by buyers under deadline pressure - non-compliance enters the pipeline silently.",
+          "source": "Hackett operational excellence (2025)."
+        },
+        {
+          "title": "Wrong approval routing",
+          "value": "12%",
+          "context": "of PRs route through the wrong approval flow - delays, escalations, audit-trail gaps.",
+          "source": "APQC PCF PR-to-PO benchmarks."
+        },
+        {
+          "title": "Maverick conversion",
+          "value": "~16%",
+          "context": "of PRs that should have been routed to catalog / framework deals get manually converted to off-contract POs.",
+          "source": "ProcureCon (2025)."
+        }
+      ],
+      "calloutTitle": "On a €500M indirect spend base: €5-15M / year of leakage",
+      "calloutBody": "And audit findings that pile up over time.",
+      "sourcesLine": "Sources: Hackett (2025), APQC PCF, ProcureCon (2025)."
+    }
+  },
+  {
+    "id": "order-confirmation",
+    "name": "Order Confirmation Agent",
+    "category": "p2p",
+    "tagline": "Chase order confirmations and resolve disputes autonomously - via email or phone.",
+    "intro": {
+      "description": "Send a Purchase Order (PO) Monday morning. Tuesday, nothing. Wednesday, send the chase email. Thursday, send the reminder. Friday afternoon, call the supplier. The OC finally arrives Monday with the wrong delivery date, the wrong unit price, and a quantity that doesn't match. Now the buyer reopens the negotiation thread by email, in three back-and-forth rounds, before the OC is clean. Half a buyer's week is spent on follow-ups and discrepancy emails - time that should go to category strategy and the next sourcing event. The agent chases suppliers the moment a PO goes out, parses every OC line, and resolves price/date/quantity disputes by email or phone autonomously.",
+      "flow": [
+        "PO sent",
+        "Auto-chase supplier",
+        "Receive OC",
+        "Resolve disputes",
+        "Confirmed"
+      ],
+      "impact": [
+        {
+          "label": "Automation rate",
+          "value": "85%+",
+          "sub": "POs confirmed untouched"
+        },
+        {
+          "label": "Chasing",
+          "value": "0 h",
+          "sub": "agents handle every follow-up"
+        },
+        {
+          "label": "Disputes",
+          "value": "auto",
+          "sub": "resolved by email or phone"
+        },
+        {
+          "label": "Cycle time",
+          "value": "hours",
+          "sub": "vs. days manual follow-up"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Current hours/week per Full-Time Equivalent (FTE)",
+          "value": "8 h",
+          "sub": "OC chasing & disputes"
+        },
+        {
+          "label": "Lio reduction",
+          "value": "90%",
+          "sub": "agents handle every touch"
+        },
+        {
+          "label": "Confirmation time",
+          "value": "4 d → 6 h",
+          "sub": "vs. manual chasing"
+        }
+      ],
+      "calculator": {
+        "headline": "Hours freed per week, per operational-buyer FTE",
+        "inputs": [
+          {
+            "id": "ftes",
+            "label": "FTEs in operational procurement",
+            "unit": "FTEs",
+            "min": 1,
+            "max": 100,
+            "default": 15,
+            "step": 1
+          },
+          {
+            "id": "current",
+            "label": "Current hours/week per FTE on OC chasing",
+            "unit": "h",
+            "min": 2,
+            "max": 25,
+            "default": 8,
+            "step": 0.5
+          },
+          {
+            "id": "reduction",
+            "label": "Lio reduction",
+            "unit": "%",
+            "min": 40,
+            "max": 99,
+            "default": 90,
+            "step": 5
+          }
+        ],
+        "formulaSource": "e=>{const t=e.current*(e.reduction/100),n=t*e.ftes;return[{label:\"Hours freed per week, per FTE\",value:t,unit:\"h\",highlight:!0,display:`~${t.toFixed(1)} h/wk`},{label:\"Team total per week\",value:n,unit:\"h\",display:`~${Math.round(n)} h/wk`},{label:\"Team total per month\",value:n*4.33,unit:\"h\",display:`~${Math.round(n*4.33)} h/mo`},{label:\"Team total per year\",value:n*46,unit:\"h\",display:`~${Math.round(n*46).toLocaleString(\"en-US\")} h/yr`}]}"
+      },
+      "rationale": "A reminder email pings the supplier inbox. An agent reads the OC when it arrives, parses prices, dates and quantities, and negotiates discrepancies in real time."
+    },
+    "caseStudy": {
+      "client": "Industrial Automation OEM",
+      "clientMeta": "Discrete manufacturing · 6,000 employees · 120,000 POs p.a.",
+      "headline": {
+        "value": "32% → 93%",
+        "label": "Auto-confirmation rate (2.9× uplift)",
+        "sub": "First 12 months · 120,000 POs covered"
+      },
+      "stats": [
+        {
+          "label": "Hours freed",
+          "value": "8,500 / yr"
+        },
+        {
+          "label": "Confirmation time",
+          "value": "4 d → 6 h"
+        }
+      ],
+      "quote": {
+        "text": "Our buyers were spending almost a full day every week just chasing order confirmations. The agent now follows up the moment we send a PO and only escalates when something genuinely needs a human.",
+        "role": "Director Operational Procurement, Industrial Automation OEM"
+      }
+    },
+    "deepDive": {
+      "template": "cost-of-waiting",
+      "tabLabel": "Cost of waiting",
+      "header": "Cost of waiting",
+      "subtitle": "Every quarter without OC automation costs you buyer hours and supply reliability.",
+      "hero": {
+        "value": "4,050 hours / quarter",
+        "subLabel": "at 50 buyers × 4 hours/week chasing OCs × 12 weeks."
+      },
+      "bullets": [
+        "Up to 40% of POs go unconfirmed on time every quarter - late discovery turns into late deliveries and panic expedites.",
+        "Buyer time spent chasing instead of negotiating: ~16,000 hours per year for a 50-buyer team - strategic capacity you keep paying for but not getting.",
+        "Buyer time spent chasing instead of negotiating: ~16,000 hours per year for a 50-buyer team - strategic capacity you keep paying for but not getting.",
+        "Supply lead-time padding becomes baked into your standard processes - you stop noticing the friction, but it stays."
+      ],
+      "ctaLabel": "Calculate your cost of waiting →"
+    }
+  },
+  {
+    "id": "order-bundling-agent",
+    "name": "Order Bundling Agent",
+    "category": "p2s",
+    "order": 4,
+    "tagline": "Find the same or similar materials scattered across your Purchase Orders - and bundle them into negotiated savings.",
+    "intro": {
+      "description": "Same material at Plant A €4.20, Plant B €4.85, Plant C €5.10. Three suppliers, one item, no bundling. The savings sit in plain sight on every spend report.",
+      "flow": [
+        "Purchase Order (PO) base scanned across plants / Business Units (BUs)",
+        "Similar-material clusters identified (product-knowledge match)",
+        "Volume consolidated",
+        "Framework negotiated (or drafted new)",
+        "Contract live"
+      ],
+      "impact": [
+        {
+          "label": "Bundling savings",
+          "value": "Up to 15%",
+          "sub": "on consolidated volume"
+        },
+        {
+          "label": "Opportunities surfaced",
+          "value": "all",
+          "sub": "across plants, BUs, geos"
+        },
+        {
+          "label": "Purchase Order consolidation",
+          "value": "-40%",
+          "sub": "fewer POs, same demand"
+        },
+        {
+          "label": "Detection",
+          "value": "live",
+          "sub": "vs. quarterly manual reviews"
+        }
+      ],
+      "matching": {
+        "chips": [
+          {
+            "label": "European Article Number (EAN)",
+            "tooltip": "Matches identical Stock Keeping Units across plants."
+          },
+          {
+            "label": "Material number",
+            "tooltip": "Matches internal item codes across Business Units."
+          },
+          {
+            "label": "Stock Keeping Unit (SKU)",
+            "tooltip": "Matches the same item under different supplier codes."
+          },
+          {
+            "label": "Description text",
+            "tooltip": "Multilingual fuzzy match on free-text descriptions."
+          },
+          {
+            "label": "STEP files",
+            "tooltip": "3D geometry match for similar manufactured parts."
+          },
+          {
+            "label": "Product specifications",
+            "tooltip": "Material composition + manufacturing process match."
+          }
+        ]
+      }
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Bundling savings",
+          "value": "Up to 15%",
+          "sub": "on consolidated volume"
+        },
+        {
+          "label": "Addressable share",
+          "value": "60%",
+          "sub": "of fragmented PO volume"
+        },
+        {
+          "label": "Avg. bundling rate",
+          "value": "8%",
+          "sub": "blended default, adjustable"
+        },
+        {
+          "label": "Match scope",
+          "value": "same + similar",
+          "sub": "product-knowledge match"
+        }
+      ],
+      "calculator": {
+        "headline": "Realized savings on bundleable spend",
+        "inputs": [
+          {
+            "id": "spend",
+            "label": "Annual Purchase Order volume",
+            "unit": "€",
+            "min": 50000000,
+            "max": 5000000000,
+            "default": 250000000,
+            "step": 10000000,
+            "format": "«ref»"
+          },
+          {
+            "id": "rate",
+            "label": "Avg bundling savings rate",
+            "unit": "%",
+            "min": 3,
+            "max": 15,
+            "default": 8,
+            "step": 1,
+            "format": "e=>`${e}%`"
+          }
+        ],
+        "formulaSource": "e=>{const t=e.spend*.6,n=t*(e.rate/100);return[{label:\"Bundleable Purchase Order volume (~60% share)\",value:t,unit:\"€\",display:U(t)},{label:\"Applied bundling rate\",value:e.rate,unit:\"%\",display:`${e.rate}%`},{label:\"Bundling savings per year\",value:n,unit:\"€\",highlight:!0,display:U(n)}]}"
+      },
+      "rationale": "Applied to the bundleable share identified by Lio's product-knowledge matching (typically ~60% of total Purchase Order volume). Default 8% is conservative; up to 15% reflects best-in-class bundles on commodity categories. The agent runs detection across the entire PO base, consolidates the volume, and drafts the contract action - amend an existing framework where one exists, write a new one where it doesn't. Sources: McKinsey (2024), Hackett indirect spend (2025), World Commerce & Contracting (2025)."
+    },
+    "caseStudy": {
+      "client": "Mid-cap industrial manufacturer",
+      "clientMeta": "~8,000 employees · €250M annual Purchase Order volume · 12 plants",
+      "headline": {
+        "value": "€12M",
+        "label": "Bundling savings realized, year 1 (€250M Purchase Order volume × 60% bundleable × 8%)",
+        "sub": "First 12 months · 240 bundling clusters identified · €150M consolidated"
+      },
+      "stats": [
+        {
+          "label": "Bundling clusters identified",
+          "value": "240"
+        },
+        {
+          "label": "Purchase Order consolidation",
+          "value": "-38%"
+        },
+        {
+          "label": "Contract coverage uplift",
+          "value": "+26 percentage points"
+        }
+      ],
+      "quote": {
+        "text": "We had no idea how fragmented our purchasing actually was. The agent matched our European Article Numbers and material numbers across plants and found another 240 clusters of similar materials we never connected, using product knowledge from descriptions, STEP files and material specifications. The consolidation realized €12M on roughly €150M of bundleable spend, an average 8% savings on the consolidated portion.",
+        "role": "Head of Category Management"
+      }
+    }
+  },
+  {
+    "id": "tracking-agent",
+    "name": "Tracking Agent",
+    "category": "p2p",
+    "tagline": "Live delivery tracking across every carrier, with proactive delay alerts before production is hit.",
+    "intro": {
+      "description": "Every Monday a planner opens fifteen carrier portals, sends six 'still on schedule?' emails, and updates the status sheet by hand. A critical inbound gets stuck at customs and nobody finds out until the line manager calls because the buffer is empty. Multiply by thousands of active Purchase Orders (POs), and the portal hunt eats half a planner's week - mostly producing information nobody acts on until it's too late.",
+      "flow": [
+        "Carrier connect",
+        "Auto-pull status",
+        "Detect delay risk",
+        "Notify owner",
+        "Resolve"
+      ],
+      "impact": [
+        {
+          "label": "Order visibility",
+          "value": "100%",
+          "sub": "every PO tracked end-to-end"
+        },
+        {
+          "label": "Carriers",
+          "value": "50+",
+          "sub": "out of the box"
+        },
+        {
+          "label": "Risk alerts",
+          "value": "proactive",
+          "sub": "before the delay hits"
+        },
+        {
+          "label": "Updates",
+          "value": "live",
+          "sub": "no manual checks"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Current hours/week per Full-Time Equivalent (FTE)",
+          "value": "10 h",
+          "sub": "carrier portal checks & status sheets"
+        },
+        {
+          "label": "Lio reduction",
+          "value": "90%",
+          "sub": "live status, proactive alerts"
+        },
+        {
+          "label": "Risk lead time",
+          "value": "+5 days",
+          "sub": "early warning before the line hits"
+        }
+      ],
+      "calculator": {
+        "headline": "Hours freed per week, per planner/buyer FTE",
+        "inputs": [
+          {
+            "id": "ftes",
+            "label": "FTEs tracking inbound deliveries",
+            "unit": "FTEs",
+            "min": 1,
+            "max": 100,
+            "default": 8,
+            "step": 1
+          },
+          {
+            "id": "current",
+            "label": "Current hours/week per FTE on tracking",
+            "unit": "h",
+            "min": 2,
+            "max": 25,
+            "default": 10,
+            "step": 0.5
+          },
+          {
+            "id": "reduction",
+            "label": "Lio reduction",
+            "unit": "%",
+            "min": 40,
+            "max": 99,
+            "default": 90,
+            "step": 5
+          }
+        ],
+        "formulaSource": "e=>{const t=e.current*(e.reduction/100),n=t*e.ftes;return[{label:\"Hours freed per week, per FTE\",value:t,unit:\"h\",highlight:!0,display:`~${t.toFixed(1)} h/wk`},{label:\"Team total per week\",value:n,unit:\"h\",display:`~${Math.round(n)} h/wk`},{label:\"Team total per month\",value:n*4.33,unit:\"h\",display:`~${Math.round(n*4.33)} h/mo`},{label:\"Team total per year\",value:n*46,unit:\"h\",display:`~${Math.round(n*46).toLocaleString(\"en-US\")} h/yr`}]}"
+      },
+      "rationale": "One incident pays for the agent. A single 8-hour line stoppage at automotive rates (~€2.3M/hr × 8 = ~€17M) typically pays a multiple of the agent fee."
+    },
+    "caseStudy": {
+      "client": "Industrial Supplier",
+      "clientMeta": "Tier-1 components · 5,200 employees · 12 plants",
+      "headline": {
+        "value": "€3.8M",
+        "label": "Downtime & expedite avoided",
+        "sub": "First 12 months · 32,000 inbound shipments · 11 prevented escalations"
+      },
+      "stats": [
+        {
+          "label": "Early-warning lead",
+          "value": "5.4 days"
+        },
+        {
+          "label": "Contract penalties",
+          "value": "0 triggered"
+        },
+        {
+          "label": "Line stoppages",
+          "value": "0"
+        }
+      ],
+      "quote": {
+        "text": "In May, a critical inbound shipment got stuck at customs - nobody would have spotted it. Lio flagged it on day 3 of 9. We rerouted, paid express, kept the line running.",
+        "role": "Head of Supply Chain Operations, Industrial Supplier"
+      }
+    }
+  },
+  {
+    "id": "goods-receipt",
+    "name": "Goods Receipt Agent",
+    "category": "p2p",
+    "tagline": "Scan. Match. Resolve. Mobile goods receipts matched to Purchase Orders (POs) instantly.",
+    "intro": {
+      "description": "Receivers on the dock don't sit at Enterprise Resource Planning (ERP) systems. The delivery note gets scribbled on, dropped in a tray, and keyed in two days later - if at all. By then the discrepancy can't be verified, the invoice gets blocked, and 'missing Goods Receipt (GR)' becomes the single biggest source of Accounts Payable (AP) rework.",
+      "flow": [
+        "Scan delivery note",
+        "Extract line items",
+        "Match to PO",
+        "Resolve discrepancies",
+        "Update ERP"
+      ],
+      "impact": [
+        {
+          "label": "GR completion",
+          "value": "95%",
+          "sub": "vs. ~70% manual baseline"
+        },
+        {
+          "label": "Scan-to-GR",
+          "value": "seconds",
+          "sub": "vs. minutes desktop"
+        },
+        {
+          "label": "Auto-resolved",
+          "value": "85%",
+          "sub": "discrepancies handled"
+        },
+        {
+          "label": "Mobile-first",
+          "value": "100%",
+          "sub": "works on the dock"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Current hours/week per Full-Time Equivalent (FTE)",
+          "value": "6 h",
+          "sub": "GR entry & discrepancy chasing"
+        },
+        {
+          "label": "Lio reduction",
+          "value": "85%",
+          "sub": "mobile scan + auto-match"
+        },
+        {
+          "label": "Cost per AP resolution",
+          "value": "€18",
+          "sub": "avoided on every blocked invoice"
+        }
+      ],
+      "calculator": {
+        "headline": "Hours freed per week, per receiving/AP FTE",
+        "inputs": [
+          {
+            "id": "ftes",
+            "label": "FTEs handling GRs & blocked invoices",
+            "unit": "FTEs",
+            "min": 1,
+            "max": 100,
+            "default": 12,
+            "step": 1
+          },
+          {
+            "id": "current",
+            "label": "Current hours/week per FTE on GR & rework",
+            "unit": "h",
+            "min": 2,
+            "max": 25,
+            "default": 6,
+            "step": 0.5
+          },
+          {
+            "id": "reduction",
+            "label": "Lio reduction",
+            "unit": "%",
+            "min": 40,
+            "max": 99,
+            "default": 85,
+            "step": 5
+          },
+          {
+            "id": "blocked",
+            "label": "Invoices blocked due to missing GR p.a.",
+            "unit": "",
+            "min": 100,
+            "max": 100000,
+            "default": 4000,
+            "step": 100
+          }
+        ],
+        "formulaSource": "e=>{const t=e.current*(e.reduction/100),n=t*e.ftes,r=e.blocked*18;return[{label:\"Hours freed per week, per FTE\",value:t,unit:\"h\",highlight:!0,display:`~${t.toFixed(1)} h/wk`},{label:\"Team total per week\",value:n,unit:\"h\",display:`~${Math.round(n)} h/wk`},{label:\"Team total per year\",value:n*46,unit:\"h\",display:`~${Math.round(n*46).toLocaleString(\"en-US\")} h/yr`},{label:\"AP rework avoided p.a.\",value:r,unit:\"€\",display:U(r)}]}"
+      },
+      "rationale": "Receiving teams don't sit at desktops - they're on the dock. A mobile scan + auto-match closes the loop where the work actually happens."
+    },
+    "caseStudy": {
+      "client": "Process Industry Group",
+      "clientMeta": "Specialty materials · 9,400 employees · 14 plants · 32,000 GRs p.a.",
+      "headline": {
+        "value": "74% → >95%",
+        "label": "Goods Receipt (GR) completion rate (+24 percentage points)",
+        "sub": "First 12 months · 32,000 GRs across 14 plants"
+      },
+      "stats": [
+        {
+          "label": "Blocked invoices",
+          "value": "-60%"
+        },
+        {
+          "label": "Receiving time / GR",
+          "value": "6 min → 30 s"
+        },
+        {
+          "label": "Auto-resolved",
+          "value": "86%"
+        }
+      ],
+      "quote": {
+        "text": "Receivers used to scribble on a delivery note, drop it in a tray, and someone in the office would key it in two days later - if at all. Now they scan with their phone and the GR is in SAP before the truck has left.",
+        "role": "Plant Logistics Lead, Process Industry Group"
+      }
+    }
+  },
+  {
+    "id": "invoice-agent",
+    "name": "Invoice Agent",
+    "category": "p2p",
+    "tagline": "Touchless invoice matching beyond Optical Character Recognition (OCR) - minimal false flags.",
+    "intro": {
+      "description": "Accounts Payable (AP) teams drown in mismatched invoices: partial deliveries, currency rounding, tax variations, supplier-side errors. Traditional OCR + rules engines flag too many false positives, and every flag becomes manual work that an AP clerk clears by hand, one supplier email at a time. The Friday close pushes into Monday, the discount window slips, and the supplier calls AP, not the buyer, for the third time this month asking where their payment is. The agent matches with context, resolves discrepancies directly with the supplier by email, and only escalates the genuine exceptions.",
+      "flow": [
+        "Invoice received",
+        "Extract line items",
+        "3-way match",
+        "Resolve discrepancies",
+        "Approve & post"
+      ],
+      "impact": [
+        {
+          "label": "Touchless processing",
+          "value": "85%",
+          "sub": "no human touch"
+        },
+        {
+          "label": "False flags",
+          "value": "-90%",
+          "sub": "vs. classic OCR + rules"
+        },
+        {
+          "label": "Auto-resolved",
+          "value": "70%",
+          "sub": "supplier disputes"
+        },
+        {
+          "label": "Cycle time",
+          "value": "hours",
+          "sub": "vs. days of AP backlog"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Current hours/week per Full-Time Equivalent (FTE)",
+          "value": "20 h",
+          "sub": "matching, exceptions, supplier calls"
+        },
+        {
+          "label": "Lio touchless rate",
+          "value": "85%",
+          "sub": "no human touch needed"
+        },
+        {
+          "label": "Cost per invoice",
+          "value": "-85%",
+          "sub": "vs. classic OCR"
+        }
+      ],
+      "calculator": {
+        "headline": "Hours freed per week, per AP FTE",
+        "inputs": [
+          {
+            "id": "ftes",
+            "label": "FTEs in accounts payable",
+            "unit": "FTEs",
+            "min": 1,
+            "max": 100,
+            "default": 15,
+            "step": 1
+          },
+          {
+            "id": "current",
+            "label": "Current hours/week per FTE on invoice handling",
+            "unit": "h",
+            "min": 5,
+            "max": 40,
+            "default": 20,
+            "step": 1
+          },
+          {
+            "id": "reduction",
+            "label": "Lio reduction",
+            "unit": "%",
+            "min": 40,
+            "max": 99,
+            "default": 85,
+            "step": 5
+          }
+        ],
+        "formulaSource": "e=>{const t=e.current*(e.reduction/100),n=t*e.ftes;return[{label:\"Hours freed per week, per FTE\",value:t,unit:\"h\",highlight:!0,display:`~${t.toFixed(1)} h/wk`},{label:\"Team total per week\",value:n,unit:\"h\",display:`~${Math.round(n)} h/wk`},{label:\"Team total per month\",value:n*4.33,unit:\"h\",display:`~${Math.round(n*4.33)} h/mo`},{label:\"Team total per year\",value:n*46,unit:\"h\",display:`~${Math.round(n*46).toLocaleString(\"en-US\")} h/yr`}]}"
+      },
+      "rationale": "OCR + rules stop at character recognition - every edge case becomes a flag a human has to clear. Consultancies aren't the answer either: same operational work, by hand, on the same outdated tools."
+    },
+    "caseStudy": {
+      "client": "European Retail Group",
+      "clientMeta": "Multi-format retailer · 22,000 employees · 480,000 invoices p.a.",
+      "headline": {
+        "value": "€3.9M → €0",
+        "label": "AP consultancy contract eliminated",
+        "sub": "First 12 months · 480,000 invoices · 22 EU countries"
+      },
+      "stats": [
+        {
+          "label": "Touchless rate",
+          "value": "40% → 87%"
+        },
+        {
+          "label": "Cycle time",
+          "value": "9 d → 8 h"
+        },
+        {
+          "label": "False-positive flags",
+          "value": "-92%"
+        }
+      ],
+      "quote": {
+        "text": "We had outsourced AP to a consultancy - €3.9M a year. After eight months with Lio, 87% of invoices are touchless. The few that aren't get flagged cleanly and our existing team handles them in minutes.",
+        "role": "VP Finance Operations, European Retail Group"
+      }
+    }
+  },
+  {
+    "id": "agent-bpo",
+    "name": "Agent BPO",
+    "category": "p2p",
+    "tagline": "Standard Operating Procedures (SOPs) executed by agents - 100% control, seconds instead of weeks.",
+    "intro": {
+      "description": "Traditional Business Process Outsourcing (BPO) providers and shared service centers cost millions, take months to onboard a new process, and struggle with quality and consistency. Knowledge walks out the door with attrition. Even simple SOPs sit in queues for days. You pay for headcount, not for outcomes.",
+      "flow": [
+        "SOP captured",
+        "Agent built + tested",
+        "Hand-over",
+        "Executes 24/7",
+        "Self-improves"
+      ],
+      "impact": [
+        {
+          "label": "Cost vs. BPO",
+          "value": "~7%",
+          "sub": "of traditional BPO cost"
+        },
+        {
+          "label": "Quality",
+          "value": "99.8%",
+          "sub": "execution quality"
+        },
+        {
+          "label": "Lead time",
+          "value": "seconds",
+          "sub": "vs. days/weeks of BPO"
+        },
+        {
+          "label": "Improving",
+          "value": "yes",
+          "sub": "quality climbs over time"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Cost vs. BPO",
+          "value": "~7%",
+          "sub": "of traditional BPO cost"
+        },
+        {
+          "label": "Execution quality",
+          "value": "99.8%",
+          "sub": "Lio production agents"
+        }
+      ],
+      "calculator": {
+        "headline": "Cost savings vs. BPO contract",
+        "inputs": [
+          {
+            "id": "contractValue",
+            "label": "BPO / SSC contract value p.a.",
+            "unit": "€",
+            "min": 500000,
+            "max": 200000000,
+            "default": 10000000,
+            "step": 500000,
+            "format": "«ref»"
+          }
+        ],
+        "formulaSource": "e=>{const t=e.contractValue*.93;return[{label:\"Lio cost ratio\",value:7,unit:\"%\",display:\"7%\"},{label:\"Annual cost savings\",value:t,unit:\"€\",highlight:!0,display:U(t)}]}"
+      },
+      "rationale": "Humans learn slowly and leave. Agents transfer learnings instantly across the network - a fix in one process improves every similar process. Quality climbs over time, not down with attrition. And you keep 100% control: the agent runs in your tenant, against your SOPs, with your data."
+    },
+    "caseStudy": {
+      "client": "Global Industrial Group",
+      "clientMeta": "Diversified industrial · 60,000+ employees · 14 countries · €2.1B SSC scope",
+      "headline": {
+        "value": "€8.0M → €0.6M",
+        "label": "Operating cost with Lio",
+        "sub": "First 12 months · €8M SSC scope migrated"
+      },
+      "stats": [
+        {
+          "label": "Annual cost out",
+          "value": "€7.4M"
+        },
+        {
+          "label": "Execution quality",
+          "value": "99.8%"
+        },
+        {
+          "label": "Lead time",
+          "value": "2 d → 7 s"
+        }
+      ],
+      "quote": {
+        "text": "We were running a 120-Full-Time Equivalent (FTE) shared service center in Eastern Europe - costing us roughly €8M a year for procurement operations. With SOPs, we saved more than €7M per year.",
+        "role": "Group COO, Global Industrial Group"
+      }
+    }
+  },
+  {
+    "id": "supplier-onboarding",
+    "name": "Supplier Onboarding Agent",
+    "category": "srm",
+    "tagline": "Onboard new suppliers end-to-end. The agent collects documents from public databases and supplier email, validates compliance on arrival, and monitors expiry dates. No portal logins, no chasing.",
+    "intro": {
+      "description": "Supplier onboarding is mostly chasing documents. Three of seven certificates arrive, then a week of silence, then the International Organization for Standardization (ISO) certificate expires before everything is in. Multiply by hundreds of suppliers per year, and category buyers spend their week on document collection, not supplier strategy, performance management, or category planning.",
+      "flow": [
+        "Supplier identified",
+        "Auto-enrich data",
+        "Email collect missing fields",
+        "Compliance + risk check",
+        "Onboard to Enterprise Resource Planning (ERP)"
+      ],
+      "impact": [
+        {
+          "label": "Onboarding time",
+          "value": "-85%",
+          "sub": "hours vs. weeks"
+        },
+        {
+          "label": "Data completeness",
+          "value": "95%",
+          "sub": "vs. ~70% manual"
+        },
+        {
+          "label": "Compliance checks",
+          "value": "100%",
+          "sub": "sanctions · Environmental, Social, Governance (ESG) · finance"
+        },
+        {
+          "label": "Buyer touches",
+          "value": "0",
+          "sub": "for standard onboardings"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Current hours/week per Full-Time Equivalent (FTE)",
+          "value": "3 h",
+          "sub": "on onboarding admin"
+        },
+        {
+          "label": "Lio reduction",
+          "value": "85%",
+          "sub": "vs. manual workflow"
+        },
+        {
+          "label": "Engagement uplift",
+          "value": "30% → 90%+",
+          "sub": "portal → email in their language"
+        }
+      ],
+      "calculator": {
+        "headline": "Hours freed per week, per supplier-management FTE",
+        "inputs": [
+          {
+            "id": "ftes",
+            "label": "FTEs in supplier management",
+            "unit": "FTEs",
+            "min": 1,
+            "max": 100,
+            "default": 8,
+            "step": 1
+          },
+          {
+            "id": "current",
+            "label": "Current hours/week per FTE on onboarding admin",
+            "unit": "h",
+            "min": 1,
+            "max": 20,
+            "default": 3,
+            "step": 0.5
+          },
+          {
+            "id": "reduction",
+            "label": "Lio reduction",
+            "unit": "%",
+            "min": 40,
+            "max": 99,
+            "default": 85,
+            "step": 5
+          }
+        ],
+        "formulaSource": "e=>{const t=e.current*(e.reduction/100),n=t*e.ftes;return[{label:\"Hours freed per week, per FTE\",value:t,unit:\"h\",highlight:!0,display:`~${t.toFixed(1)} h/wk`},{label:\"Team total per week\",value:n,unit:\"h\",display:`~${Math.round(n)} h/wk`},{label:\"Team total per month\",value:n*4.33,unit:\"h\",display:`~${Math.round(n*4.33)} h/mo`},{label:\"Team total per year\",value:n*46,unit:\"h\",display:`~${Math.round(n*46).toLocaleString(\"en-US\")} h/yr`}]}"
+      },
+      "rationale": "Engagement rates jump from ~30% (portal) to 90%+ (email in their language) because the agent meets suppliers where they already work."
+    },
+    "caseStudy": {
+      "client": "Multinational Industrial Group",
+      "clientMeta": "Discrete manufacturing · 28,000 employees · 4,500 new suppliers p.a.",
+      "headline": {
+        "value": "12 d → 1 d",
+        "label": "Onboarding cycle time",
+        "sub": "First 12 months · 4,500 suppliers onboarded"
+      },
+      "stats": [
+        {
+          "label": "Time saved p.a.",
+          "value": "22,950 h"
+        },
+        {
+          "label": "Data completeness",
+          "value": "70% → 96%"
+        },
+        {
+          "label": "Compliance coverage",
+          "value": "62% → 100%"
+        }
+      ],
+      "quote": {
+        "text": "Onboarding used to be a four-week project per supplier. The agent now does 85% of new suppliers end-to-end in two days, including sanctions and ESG screening.",
+        "role": "Head of Supplier Management, Multinational Industrial Group"
+      }
+    },
+    "deepDive": {
+      "template": "non-compliance",
+      "tabLabel": "Cost of non-compliance",
+      "header": "Cost of non-compliance",
+      "subtitle": "Onboarding without continuous compliance carries real risk.",
+      "pockets": [
+        {
+          "title": "Sanctions screening gaps",
+          "value": "20%+",
+          "context": "of mid-cap companies fail full sanctions screening across all suppliers - sanctions lists update faster than manual onboarding cycles.",
+          "source": "EY supplier risk benchmarks (2025)."
+        },
+        {
+          "title": "ESG & supply-chain due diligence",
+          "value": "€5M-50M+",
+          "context": "regulatory exposure under CSRD / CSDDD per material supplier-chain compliance failure.",
+          "source": "EU regulatory framework (CSRD 2024, CSDDD 2024)."
+        },
+        {
+          "title": "Stale supplier master data",
+          "value": "30%",
+          "context": "of supplier master records become inaccurate within 12 months - quietly inflating risk and breaking 3-way matches.",
+          "source": "APQC PCF supplier-data benchmarks."
+        }
+      ],
+      "calloutTitle": "A single missed sanctions check can carry seven-figure fines",
+      "calloutBody": "Plus reputational impact - onboarding is not a one-time event.",
+      "sourcesLine": "Sources: EY (2025), CSRD / CSDDD frameworks (2024), APQC PCF."
+    }
+  },
+  {
+    "id": "agentic-srm",
+    "name": "Agentic Supplier Lifecycle Management",
+    "category": "srm",
+    "tagline": "Manage the entire supplier lifecycle, from data updates to continuous performance evaluation. Suppliers interact in their own language by email, no portal logins, no chasing.",
+    "intro": {
+      "description": "Supplier master data goes stale the moment onboarding ends. Bank details change, certificates expire silently, performance reviews are six months old. The portal nobody logs into is still the official channel, and supplier scorecards, if they exist, are gut feel rather than live data.",
+      "flow": [
+        "Email-first engagement",
+        "Profile + catalog updates",
+        "Live performance evaluation",
+        "Risk monitoring",
+        "Continuous review"
+      ],
+      "impact": [
+        {
+          "label": "Engagement",
+          "value": "90%+",
+          "sub": "vs. ~30% portal adoption"
+        },
+        {
+          "label": "Data freshness",
+          "value": "live",
+          "sub": "vs. annual updates"
+        },
+        {
+          "label": "Performance",
+          "value": "live",
+          "sub": "continuous, not ad hoc"
+        },
+        {
+          "label": "Channel",
+          "value": "email",
+          "sub": "no portal logins"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Current hours/week per Full-Time Equivalent (FTE)",
+          "value": "5 h",
+          "sub": "on supplier admin & chasing"
+        },
+        {
+          "label": "Lio reduction",
+          "value": "80%",
+          "sub": "email-first, auto-monitored"
+        },
+        {
+          "label": "Engagement",
+          "value": "30% → 90%+",
+          "sub": "portal → email"
+        }
+      ],
+      "calculator": {
+        "headline": "Hours freed per week, per supplier-management FTE",
+        "inputs": [
+          {
+            "id": "ftes",
+            "label": "FTEs in supplier management",
+            "unit": "FTEs",
+            "min": 1,
+            "max": 100,
+            "default": 10,
+            "step": 1
+          },
+          {
+            "id": "current",
+            "label": "Current hours/week per FTE on supplier admin",
+            "unit": "h",
+            "min": 1,
+            "max": 25,
+            "default": 5,
+            "step": 0.5
+          },
+          {
+            "id": "reduction",
+            "label": "Lio reduction",
+            "unit": "%",
+            "min": 40,
+            "max": 99,
+            "default": 80,
+            "step": 5
+          }
+        ],
+        "formulaSource": "e=>{const t=e.current*(e.reduction/100),n=t*e.ftes;return[{label:\"Hours freed per week, per FTE\",value:t,unit:\"h\",highlight:!0,display:`~${t.toFixed(1)} h/wk`},{label:\"Team total per week\",value:n,unit:\"h\",display:`~${Math.round(n)} h/wk`},{label:\"Team total per month\",value:n*4.33,unit:\"h\",display:`~${Math.round(n*4.33)} h/mo`},{label:\"Team total per year\",value:n*46,unit:\"h\",display:`~${Math.round(n*46).toLocaleString(\"en-US\")} h/yr`}]}"
+      },
+      "rationale": "Suppliers respond to email in hours; they log into portals quarterly at best. Lio's email/NL channel achieves up to 95% engagement."
+    },
+    "caseStudy": {
+      "client": "Diversified Manufacturing Conglomerate",
+      "clientMeta": "Multi-category · 18,000 employees · 12,400 active suppliers",
+      "headline": {
+        "value": "25% → 91%",
+        "label": "Supplier engagement",
+        "sub": "First 12 months · 12,400 suppliers managed"
+      },
+      "stats": [
+        {
+          "label": "Master data freshness",
+          "value": "yearly → live"
+        },
+        {
+          "label": "Performance reviews",
+          "value": "12% → 100%"
+        },
+        {
+          "label": "Risk monitoring",
+          "value": "annual review → continuous"
+        }
+      ],
+      "quote": {
+        "text": "Our portal had 25% supplier adoption at best after years of trying. We switched to Lio's agent on email and within four months 91% of suppliers were actively responding. The agent now watches financial-health signals, adverse news, sanctions lists and delivery performance every day - so we hear about a deteriorating supplier the week it starts, not at the next annual review.",
+        "role": "Director Supplier Operations, Diversified Manufacturing Conglomerate"
+      }
+    },
+    "deepDive": {
+      "template": "non-compliance",
+      "tabLabel": "Cost of non-compliance",
+      "header": "Cost of non-compliance",
+      "subtitle": "Onboarding is the easy part. Compliance erodes the moment the supplier is live, and only continuous monitoring catches it.",
+      "pockets": [
+        {
+          "title": "Sanctions list updates",
+          "value": "Weekly",
+          "context": "Sanctions lists update weekly. A supplier cleared at onboarding can appear on a watchlist months later, through ownership changes, geographic exposure, or new restrictions. Continuous re-screening is the only way to catch it before you transact.",
+          "source": "EU sanctions framework updates, Office of Foreign Assets Control (OFAC) enforcement data (2025)."
+        },
+        {
+          "title": "Corporate Sustainability Due Diligence Directive (CSDDD) & Lieferkettensorgfaltspflichtengesetz (LkSG) ongoing duties",
+          "value": "Up to 2% of global turnover",
+          "context": "EU Corporate Sustainability Due Diligence Directive (CSDDD) and German Lieferkettensorgfaltspflichtengesetz (LkSG) require continuous supply-chain due diligence, not a one-time onboarding check. Fines reach 2% of global turnover for systemic gaps.",
+          "source": "EU CSDDD framework (2024), LkSG (German Supply Chain Act, 2023)."
+        },
+        {
+          "title": "Expired certificates & master data",
+          "value": "40%+",
+          "context": "of supplier insurance, International Organization for Standardization (ISO) and Environmental, Social, Governance (ESG) certificates expire each year without a renewal trigger. Combined with bank-detail changes that nobody flags and performance data nobody refreshes, the supplier base quietly drifts into uninsured, non-compliant exposure.",
+          "source": "APQC Process Classification Framework (PCF) supplier-data benchmarks (2025), EY supplier risk studies (2025)."
+        }
+      ],
+      "calloutTitle": "A single expired certificate or missed sanctions update can trigger seven-figure fines",
+      "calloutBody": "Plus delivery stops, contract breaches and reputational impact. Supplier management is a living process, not a one-time event.",
+      "sourcesLine": "Sources: EU Corporate Sustainability Due Diligence Directive (CSDDD) (2024), German Lieferkettensorgfaltspflichtengesetz (LkSG) (2023), Office of Foreign Assets Control (OFAC) / EU sanctions frameworks, EY supplier risk benchmarks (2025), APQC Process Classification Framework (PCF) (2025)."
+    }
+  },
+  {
+    "id": "strategic-sourcing-hub",
+    "name": "Strategic Sourcing Hub",
+    "category": "s2c",
+    "tagline": "One Artificial Intelligence (AI)-guided hub for the full sourcing journey - from specification to award. Agents orchestrate every step, every tool, in one place.",
+    "intro": {
+      "description": "Strategic sourcing events take months and live across a dozen tools. Specs are inconsistent, supplier coverage is shallow, and most savings are left on the table before the auction even starts.",
+      "flow": [
+        "Spec gen",
+        "Market scan",
+        "Request for Anything (RFx) draft",
+        "Bid analysis",
+        "Negotiation",
+        "Award"
+      ],
+      "impact": [
+        {
+          "label": "Hard savings",
+          "value": "+4.2%",
+          "sub": "on sourced spend"
+        },
+        {
+          "label": "Cycle time",
+          "value": "-65%",
+          "sub": "spec to award"
+        },
+        {
+          "label": "Supplier coverage",
+          "value": "3.4×",
+          "sub": "qualified bidders"
+        },
+        {
+          "label": "Throughput",
+          "value": "2.8×",
+          "sub": "events per Full-Time Equivalent (FTE)"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Lio savings rate",
+          "value": "4.2%",
+          "sub": "on sourced spend"
+        },
+        {
+          "label": "Cycle reduction",
+          "value": "65%",
+          "sub": "spec to award"
+        }
+      ],
+      "calculator": {
+        "headline": "Hard savings on sourced spend",
+        "inputs": [
+          {
+            "id": "spend",
+            "label": "Spend sourced p.a.",
+            "unit": "€",
+            "min": 10000000,
+            "max": 5000000000,
+            "default": 100000000,
+            "step": 10000000,
+            "format": "«ref»"
+          },
+          {
+            "id": "events",
+            "label": "Sourcing events p.a.",
+            "unit": "",
+            "min": 10,
+            "max": 1000,
+            "default": 100,
+            "step": 5
+          },
+          {
+            "id": "daysPerEvent",
+            "label": "Days per event today",
+            "unit": "d",
+            "min": 5,
+            "max": 200,
+            "default": 25,
+            "step": 1
+          }
+        ],
+        "formulaSource": "e=>{const t=e.spend*.042,n=e.events*e.daysPerEvent*.65;return[{label:\"Hard savings p.a.\",value:t,unit:\"€\",highlight:!0,display:U(t)},{label:\"Days freed for strategic work\",value:n,unit:\"d\",display:`${oC(n)} d`}]}"
+      },
+      "rationale": "More qualified bidders = real competitive tension = the mechanism behind 4.2% savings. Without supplier breadth, the savings rate collapses."
+    },
+    "caseStudy": {
+      "client": "Listed Industrial Group",
+      "clientMeta": "Manufacturing · 60,000+ employees · €1.8B indirect spend",
+      "headline": {
+        "value": "5 months → 6 weeks",
+        "label": "Cycle time after rollout",
+        "sub": "Pilot category: Information Technology (IT) services (€140M)"
+      },
+      "stats": [
+        {
+          "label": "Savings rate",
+          "value": "5.0% → 5.8%"
+        },
+        {
+          "label": "Bidders / event",
+          "value": "4 → 9"
+        },
+        {
+          "label": "Realized savings",
+          "value": "€8.1M"
+        }
+      ],
+      "quote": {
+        "text": "What used to be a 5-month event from kickoff to signed contract is now 6 weeks. The hub finds suppliers we never would have invited and runs bid analysis overnight. My team spends their time on category strategy, not chasing files.",
+        "role": "VP Indirect Procurement, Listed Industrial Group"
+      }
+    },
+    "deepDive": {
+      "template": "cost-of-waiting",
+      "tabLabel": "Cost of waiting",
+      "header": "Cost of waiting",
+      "subtitle": "Every quarter without Strategic Sourcing Hub costs you.",
+      "hero": {
+        "value": "€1.0M / quarter",
+        "subLabel": "at €100M annual sourced spend × 4.2% Lio savings rate ÷ 4 quarters."
+      },
+      "bullets": [
+        "1,800 cycle-days don't shorten - every event you run by email keeps your team in tactical mode for another quarter.",
+        "Top-quartile competitors close the savings-rate gap by ~1 percentage point per year - every quarter you wait widens the disadvantage.",
+        "Supplier coverage doesn't compound - you keep RFx-ing the same 3 incumbents instead of building a 13-bidder market view."
+      ],
+      "ctaLabel": "Calculate your cost of waiting →"
+    }
+  },
+  {
+    "id": "sourcing-agent",
+    "name": "Tailspend Sourcing Agent",
+    "category": "s2c",
+    "tagline": "Identifies alternative vendors, autonomously creates and sends Request for Quotations (RFQs), compares quotes, and awards the best supplier - at scale, on every tail-spend purchase.",
+    "intro": {
+      "description": "Tail-spend purchases get a single quote from one supplier and that's it. Even a one-vendor RFQ would beat the first-offer price. The Sourcing Agent runs 3-5 vendor RFQs on every request, autonomously.",
+      "flow": [
+        "Request received",
+        "Find alternatives",
+        "Send RFQs",
+        "Compare quotes",
+        "Award"
+      ],
+      "impact": [
+        {
+          "label": "Hard savings",
+          "value": "10%",
+          "sub": "on sourced quotes"
+        },
+        {
+          "label": "Vendors per RFQ",
+          "value": "3-5",
+          "sub": "vs. 1 single-source"
+        },
+        {
+          "label": "Additional RFQs",
+          "value": "3×",
+          "sub": "previously limited capacity"
+        },
+        {
+          "label": "Cycle time",
+          "value": "days",
+          "sub": "vs. weeks manually"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Share routed through Lio",
+          "value": "80%",
+          "sub": "tail-spend coverage"
+        },
+        {
+          "label": "Lio savings rate",
+          "value": "10%",
+          "sub": "on sourced quotes"
+        }
+      ],
+      "calculator": {
+        "headline": "Hard savings from added competition",
+        "inputs": [
+          {
+            "id": "tailSpend",
+            "label": "Tail-spend volume p.a.",
+            "unit": "€",
+            "min": 1000000,
+            "max": 500000000,
+            "default": 50000000,
+            "step": 1000000,
+            "format": "«ref»"
+          },
+          {
+            "id": "coverage",
+            "label": "Share routed through Lio",
+            "unit": "%",
+            "min": 20,
+            "max": 100,
+            "default": 80,
+            "step": 5
+          },
+          {
+            "id": "rate",
+            "label": "Lio savings rate",
+            "unit": "%",
+            "min": 5,
+            "max": 15,
+            "default": 10,
+            "step": 1
+          }
+        ],
+        "formulaSource": "e=>{const t=e.tailSpend*(e.coverage/100)*(e.rate/100);return[{label:\"Hard savings p.a.\",value:t,unit:\"€\",highlight:!0,display:U(t)}]}"
+      },
+      "rationale": "Negotiating one quote down only goes so far. Bringing 3-5 vendors into a real RFQ creates genuine price discovery and consistently outperforms negotiation alone on the same purchase."
+    },
+    "caseStudy": {
+      "client": "Industrial Equipment Manufacturer",
+      "clientMeta": "Mechanical engineering · 4,500 employees · €70M tail spend",
+      "headline": {
+        "value": "0% → 11.2%",
+        "label": "Savings on previously un-sourced requests",
+        "sub": "First 12 months · 8,200 RFQs run · €6.3M total realized"
+      },
+      "stats": [
+        {
+          "label": "Avg. vendors / RFQ",
+          "value": "4.2"
+        },
+        {
+          "label": "Sourcing coverage",
+          "value": "82%"
+        },
+        {
+          "label": "Cycle time",
+          "value": "3 weeks → 2 days"
+        }
+      ],
+      "quote": {
+        "text": "Before Lio, our engineers would email one supplier, accept the quote, and we'd pay it. The agent now finds three to five alternatives for every request - we're saving 11% on average on purchases that previously had no competition at all.",
+        "role": "Head of Operational Procurement, Industrial Equipment Manufacturer"
+      }
+    }
+  },
+  {
+    "id": "negotiation-prep",
+    "name": "Negotiation Preparation",
+    "category": "s2c",
+    "tagline": "Levels up junior buyers to senior negotiators - and helps senior buyers deliver faster, more structured arguments. Real-time insights, market benchmarks, practice calls, live counter-arguments.",
+    "intro": {
+      "description": "Suppliers negotiate the same contract twenty times a year - your buyer sees it once every two or three years, alone, with whatever they could pull together on Friday afternoon. Benchmarks live in three different SharePoint folders or nowhere. The cost-driver model is last year's spreadsheet from a colleague who left. The counter-argument library is the buyer's own memory. Junior buyers walk into the room and get steamrolled on terms they didn't know were negotiable; senior buyers leave up to 4% on the table because they ran out of prep hours, not because they ran out of skill. The agent prepares strategy, benchmarks, practice calls and live counter-arguments, and the same buyer walks in with eight defensible levers instead of two.",
+      "flow": [
+        "Strategy & benchmarks",
+        "Practice calls & coaching",
+        "Live data & counter-arguments"
+      ],
+      "impact": [
+        {
+          "label": "Additional savings",
+          "value": "up to 6.5%",
+          "sub": "via better prep"
+        },
+        {
+          "label": "Senior buyers",
+          "value": "faster",
+          "sub": "more structured arguments"
+        },
+        {
+          "label": "Junior buyers",
+          "value": "level up",
+          "sub": "to senior outcomes"
+        },
+        {
+          "label": "Prep time",
+          "value": "-70%",
+          "sub": "days of analyst work in hours"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Current hours/week per Full-Time Equivalent (FTE)",
+          "value": "6 h",
+          "sub": "negotiation prep & benchmarking"
+        },
+        {
+          "label": "Lio reduction",
+          "value": "70%",
+          "sub": "agent runs prep & coaching"
+        },
+        {
+          "label": "Savings rate uplift",
+          "value": "+1.5-2 pp",
+          "sub": "on negotiated spend"
+        }
+      ],
+      "calculator": {
+        "headline": "Hours freed per week, per category-buyer FTE",
+        "inputs": [
+          {
+            "id": "ftes",
+            "label": "FTEs running negotiations",
+            "unit": "FTEs",
+            "min": 1,
+            "max": 100,
+            "default": 8,
+            "step": 1
+          },
+          {
+            "id": "current",
+            "label": "Current hours/week per FTE on negotiation prep",
+            "unit": "h",
+            "min": 2,
+            "max": 20,
+            "default": 6,
+            "step": 0.5
+          },
+          {
+            "id": "reduction",
+            "label": "Lio reduction",
+            "unit": "%",
+            "min": 40,
+            "max": 95,
+            "default": 70,
+            "step": 5
+          }
+        ],
+        "formulaSource": "e=>{const t=e.current*(e.reduction/100),n=t*e.ftes;return[{label:\"Hours freed per week, per FTE\",value:t,unit:\"h\",highlight:!0,display:`~${t.toFixed(1)} h/wk`},{label:\"Team total per week\",value:n,unit:\"h\",display:`~${Math.round(n)} h/wk`},{label:\"Team total per month\",value:n*4.33,unit:\"h\",display:`~${Math.round(n*4.33)} h/mo`},{label:\"Team total per year\",value:n*46,unit:\"h\",display:`~${Math.round(n*46).toLocaleString(\"en-US\")} h/yr`}]}"
+      },
+      "rationale": "Seniors deliver faster, more structured arguments. Juniors are leveled up to senior-level outcomes. up to 6.5% additional savings on the same contracts - without hiring."
+    },
+    "caseStudy": {
+      "client": "Automotive Supplier Group",
+      "clientMeta": "Tier-1 components · 14,000 employees · €1.2B negotiated spend",
+      "headline": {
+        "value": "+1.9 pp",
+        "label": "Average savings rate uplift (percentage points)",
+        "sub": "First 12 months · 84 strategic negotiations · €22.8M extra"
+      },
+      "stats": [
+        {
+          "label": "Savings rate",
+          "value": "4.8% → 6.7%"
+        },
+        {
+          "label": "Prep time / nego",
+          "value": "7 d → 2 d"
+        },
+        {
+          "label": "Practice calls run",
+          "value": "240"
+        }
+      ],
+      "quote": {
+        "text": "Our junior buyers used to walk into negotiations and get steamrolled. After three months, the same buyers are running practice calls the night before, walking in with eight counter-arguments per term, and closing on average 1.4× the savings.",
+        "role": "VP Procurement, Automotive Supplier Group"
+      }
+    }
+  },
+  {
+    "id": "tail-spend-negotiation",
+    "name": "Tailspend Negotiation Agent",
+    "category": "s2c",
+    "tagline": "Autonomously renegotiates every quote end-to-end through dynamic email conversations. Driven by data and game-theory strategies.",
+    "intro": {
+      "description": "Tail-spend Purchase Orders (POs) under €5k get rubber-stamped at first-offer price. The Tail-Spend Negotiation Agent challenges every quote politely, data-driven, at scale - and 7 in 10 settle without a buyer ever touching them.",
+      "flow": [
+        "Quote received",
+        "Benchmark vs. data",
+        "Game-theory strategy",
+        "Email negotiation",
+        "Close"
+      ],
+      "impact": [
+        {
+          "label": "Hard savings",
+          "value": "up to 15%",
+          "sub": "on negotiated quotes"
+        },
+        {
+          "label": "Quote coverage",
+          "value": "up to 100%",
+          "sub": "every quote challenged"
+        },
+        {
+          "label": "Auto-close rate",
+          "value": "70%",
+          "sub": "no human in the loop"
+        },
+        {
+          "label": "Cycle time",
+          "value": "hours",
+          "sub": "vs. days/weeks manually"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Quote coverage",
+          "value": "100%",
+          "sub": "every quote challenged"
+        },
+        {
+          "label": "Lio savings rate",
+          "value": "up to 15%",
+          "sub": "on negotiated quotes"
+        }
+      ],
+      "calculator": {
+        "headline": "Hard savings on previously un-negotiated spend",
+        "inputs": [
+          {
+            "id": "tail",
+            "label": "Tail-spend volume p.a.",
+            "unit": "€",
+            "min": 1000000,
+            "max": 500000000,
+            "default": 50000000,
+            "step": 1000000,
+            "format": "«ref»"
+          },
+          {
+            "id": "coverage",
+            "label": "Quote coverage",
+            "unit": "%",
+            "min": 20,
+            "max": 100,
+            "default": 100,
+            "step": 5
+          },
+          {
+            "id": "rate",
+            "label": "Lio savings rate",
+            "unit": "%",
+            "min": 3,
+            "max": 15,
+            "default": 10,
+            "step": 1
+          }
+        ],
+        "formulaSource": "e=>{const t=e.tail*(e.coverage/100)*(e.rate/100);return[{label:\"Hard savings p.a.\",value:t,unit:\"€\",highlight:!0,display:U(t)}]}"
+      },
+      "rationale": "Humans can't economically negotiate every €3k PO. The agent can. You're capturing savings on stuff that previously got rubber-stamped at first-offer price."
+    },
+    "caseStudy": {
+      "client": "Mid-cap Manufacturer",
+      "clientMeta": "Industrial components · 3,200 employees · €60M tail spend",
+      "headline": {
+        "value": "0% → 6.4%",
+        "label": "Realized savings on tail spend",
+        "sub": "First 12 months · 14,000 quotes negotiated · €3.6M"
+      },
+      "stats": [
+        {
+          "label": "Auto-close rate",
+          "value": "72%"
+        },
+        {
+          "label": "Cycle time",
+          "value": "2 weeks → 14 hours"
+        },
+        {
+          "label": "Supplier acceptance",
+          "value": "68%"
+        }
+      ],
+      "quote": {
+        "text": "We weren't negotiating any of our sub-€5k POs. The agent runs three to five email rounds with every supplier, anchored on real benchmarks. Suppliers respect it because it's polite and data-driven - and 7 out of 10 quotes settle without a buyer ever touching them.",
+        "role": "Director Indirect Procurement, Mid-cap Manufacturer"
+      }
+    },
+    "deepDive": {
+      "template": "cost-of-waiting",
+      "tabLabel": "Cost of waiting",
+      "header": "Cost of waiting",
+      "subtitle": "Every quarter rubber-stamping first-offer prices costs you.",
+      "hero": {
+        "value": "€1.9M / quarter",
+        "subLabel": "at €50M annual tail spend × 15% Lio savings rate ÷ 4 quarters."
+      },
+      "bullets": [
+        "100% of incoming tail-spend quotes accepted at first offer - every quarter without Lio, the leak continues at run-rate.",
+        "Suppliers learn that you don't negotiate - the anchor effect compounds, and reopening conversations later gets harder.",
+        "The 24/7 auto-close benefit doesn't accumulate - every weekend of unnegotiated POs is permanently lost savings."
+      ],
+      "ctaLabel": "Calculate your cost of waiting →"
+    }
+  },
+  {
+    "id": "rfx-creation",
+    "name": "RfX Creation Agent",
+    "category": "s2c",
+    "tagline": "From stakeholder requirements to a send-ready Request for Proposal in days, not weeks.",
+    "intro": {
+      "description": "A Request for Proposal eats four to six weeks: drafts, stakeholder loops, requirements that surface only when the first supplier asks. Buyers spend the week chasing - not sourcing.",
+      "flow": [
+        "Stakeholder intake",
+        "Spec extraction",
+        "Draft RfX",
+        "Stakeholder review",
+        "Ready to send"
+      ],
+      "impact": [
+        {
+          "label": "Cycle time",
+          "value": "-70%",
+          "sub": "weeks → days"
+        },
+        {
+          "label": "Buyer stakeholder loops",
+          "value": "0",
+          "sub": "agent runs 5-8 loops in parallel; buyer sees only the final review"
+        },
+        {
+          "label": "Spec completeness",
+          "value": "100%",
+          "sub": "every requirement captured"
+        },
+        {
+          "label": "First-pass quality",
+          "value": "90%+",
+          "sub": "ready to send, no rework"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Current hours/week per Full-Time Equivalent (FTE)",
+          "value": "8 h",
+          "sub": "stakeholder chasing & drafting"
+        },
+        {
+          "label": "Lio reduction",
+          "value": "70%",
+          "sub": "agent runs intake & draft"
+        },
+        {
+          "label": "Additional sourcing waves",
+          "value": "+2-3 / yr",
+          "sub": "from freed capacity"
+        }
+      ],
+      "calculator": {
+        "headline": "Days freed per year on strategic RfP events",
+        "inputs": [
+          {
+            "id": "events",
+            "label": "Strategic RfP events per year",
+            "unit": "",
+            "min": 10,
+            "max": 300,
+            "default": 80,
+            "step": 5
+          }
+        ],
+        "formulaSource": "e=>{const n=e.events*12;return[{label:\"Days saved per event (Lio benchmark)\",value:12,unit:\"d\",display:\"12 d\"},{label:\"Days freed per year\",value:n,unit:\"d\",highlight:!0,display:`~${Math.round(n).toLocaleString(\"en-US\")} d`}]}"
+      },
+      "rationale": "RfX creation is the silent gate before sourcing savings - not the supplier side. Faster, sharper specs mean more events per year, each landing with a tighter bid file. Customers reinvest freed capacity into 2-3 additional sourcing waves, worth multiples of the labor savings. Sources: Hackett (2025), ProcureCon strategic sourcing (2024)."
+    },
+    "caseStudy": {
+      "client": "Industrial Engineering Group",
+      "clientMeta": "Plant & equipment · 8,000 employees · 60 strategic RfX p.a.",
+      "headline": {
+        "value": "5×",
+        "label": "Faster spec to send (3 wk → 4 d)",
+        "sub": "First 12 months · 54 RfX events"
+      },
+      "stats": [
+        {
+          "label": "Stakeholder meetings",
+          "value": "6 → 1"
+        },
+        {
+          "label": "First-pass quality",
+          "value": "92%"
+        },
+        {
+          "label": "Buyer hours saved",
+          "value": "9,200 / yr"
+        }
+      ],
+      "quote": {
+        "text": "Building an RfX used to mean three weeks of meetings, drafts and revisions. Now the agent interviews stakeholders, extracts the requirements, drafts the document - and we review it in 30 minutes. We've cut sourcing cycle time in half and added two extra sourcing waves this year without a single new hire.",
+        "role": "Head of Strategic Sourcing, Industrial Engineering Group"
+      }
+    }
+  },
+  {
+    "id": "supplier-selection",
+    "name": "Supplier Selection Agent",
+    "category": "s2c",
+    "tagline": "A ranked supplier shortlist, including 40% qualified new bidders, in minutes.",
+    "intro": {
+      "description": "Every category starts with the same four or five known suppliers because building a fresh shortlist takes weeks. The usual suspects price like the usual suspects.",
+      "flow": [
+        "Requirements parsed",
+        "Own base screened",
+        "External discovery",
+        "Capability match",
+        "Ranked shortlist"
+      ],
+      "impact": [
+        {
+          "label": "Time to shortlist",
+          "value": "min",
+          "sub": "vs. 2-3 weeks manually"
+        },
+        {
+          "label": "Supplier coverage",
+          "value": "5-10×",
+          "sub": "own base + external discovery"
+        },
+        {
+          "label": "New-to-bid suppliers",
+          "value": "40%+",
+          "sub": "qualified, capability-matched"
+        },
+        {
+          "label": "Match quality",
+          "value": "ranked",
+          "sub": "weighted, defensible criteria"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Time to shortlist",
+          "value": "min",
+          "sub": "vs. 2-3 weeks manually"
+        },
+        {
+          "label": "Supplier coverage",
+          "value": "5-10×",
+          "sub": "own base + external"
+        },
+        {
+          "label": "New-to-bid suppliers",
+          "value": "40%+",
+          "sub": "qualified, matched"
+        },
+        {
+          "label": "Match quality",
+          "value": "ranked",
+          "sub": "weighted criteria"
+        }
+      ],
+      "calculator": {
+        "headline": "Additional savings from deeper shortlists",
+        "inputs": [
+          {
+            "id": "spend",
+            "label": "Annual sourced spend",
+            "unit": "€",
+            "min": 50000000,
+            "max": 5000000000,
+            "default": 300000000,
+            "step": 10000000,
+            "format": "«ref»"
+          }
+        ],
+        "formulaSource": "e=>{const n=e.spend*.021;return[{label:\"Lio blended uplift (depth)\",value:2.1,unit:\"%\",display:`${2.1}%`},{label:\"Additional savings per year\",value:n,unit:\"€\",highlight:!0,display:U(n)}]}"
+      },
+      "rationale": "Negotiation gets you maybe 1% off a quote. A deeper shortlist gets you up to 4% off the awarded contract - three qualified incumbents and four credible challengers price differently than the same five usual suspects. The Sourcing Agent then converts the shortlist into received quotes. Sources: BCG (2024), McKinsey supplier discovery (2025), Hackett (2025)."
+    },
+    "caseStudy": {
+      "client": "Listed Industrial Group",
+      "clientMeta": "Manufacturing · 12,000 employees · €600M sourced spend",
+      "headline": {
+        "value": "+3.2%",
+        "label": "Hard savings uplift (5 → 13 suppliers per Request for Anything (RFx))",
+        "sub": "First 12 months · 140 sourcing events"
+      },
+      "stats": [
+        {
+          "label": "New suppliers introduced",
+          "value": "40%"
+        },
+        {
+          "label": "Time to shortlist",
+          "value": "2 wk → 8 min"
+        },
+        {
+          "label": "Buyer hours saved",
+          "value": "11,400 / yr"
+        }
+      ],
+      "quote": {
+        "text": "We were sourcing with the same four or five suppliers per category for years. The agent now finds twelve to fifteen qualified bidders per RFx (forty percent of them new to us) and ranks them on real capability data. Our average winning bid is 3.2% lower on identical categories versus last year.",
+        "role": "Director Strategic Sourcing, Listed Industrial Group"
+      }
+    }
+  },
+  {
+    "id": "supplier-sourcing",
+    "name": "Supplier Sourcing Agent",
+    "category": "s2c",
+    "tagline": "Every supplier interaction handled until the quotes are in - outreach, questions, reminders.",
+    "intro": {
+      "description": "Send eight invites, get three usable quotes by Friday. Half a sourcing buyer's week is moving emails - not running events.",
+      "flow": [
+        "Shortlist received",
+        "Outreach personalized",
+        "Supplier Q&A",
+        "Reminders & chasing",
+        "Quotes collected"
+      ],
+      "impact": [
+        {
+          "label": "Response rate",
+          "value": "85%+",
+          "sub": "vs. up to 60% baseline"
+        },
+        {
+          "label": "Quotes per event",
+          "value": "+60%",
+          "sub": "from same supplier base"
+        },
+        {
+          "label": "Buyer outreach time",
+          "value": "~0 h",
+          "sub": "agents handle every touch"
+        },
+        {
+          "label": "Cycle time to quote",
+          "value": "-50%",
+          "sub": "vs. email-only chasing"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Current hours/week per Full-Time Equivalent (FTE)",
+          "value": "12 h",
+          "sub": "outreach, Q&A, reminders"
+        },
+        {
+          "label": "Lio reduction",
+          "value": "95%",
+          "sub": "agents handle outreach end-to-end"
+        },
+        {
+          "label": "Response rate",
+          "value": "55% → 89%",
+          "sub": "quotes per event +60%"
+        }
+      ],
+      "calculator": {
+        "headline": "Team hours back per week + additional EUR from deeper quote files",
+        "inputs": [
+          {
+            "id": "ftes",
+            "label": "Full-Time Equivalents in sourcing",
+            "unit": "FTEs",
+            "min": 1,
+            "max": 100,
+            "default": 10,
+            "step": 1
+          },
+          {
+            "id": "spend",
+            "label": "Annual sourced spend",
+            "unit": "€",
+            "min": 50000000,
+            "max": 5000000000,
+            "default": 300000000,
+            "step": 10000000,
+            "format": "«ref»"
+          }
+        ],
+        "formulaSource": "e=>{const n=11*e.ftes,o=e.spend*(1.4/100);return[{label:\"Hours/week freed per FTE (Lio benchmark)\",value:11,unit:\"h\",display:\"11 h\"},{label:\"Team hours back per week\",value:n,unit:\"h\",highlight:!0,display:`~${Math.round(n)} h/wk`},{label:\"Additional savings per year (×1.4% blended uplift)\",value:o,unit:\"€\",highlight:!0,display:U(o)}]}"
+      },
+      "rationale": "A sourcing event with four received quotes is structurally different from one with nine - more quotes mean a higher chance of a price-breaker. Personalized outreach in the supplier's language, instant Q&A in context and polite chasing get the long tail to engage. Combined with Supplier Selection, the funnel goes from thin to deep, the savings rate compounds, and buyers stop spending half their week moving emails. Sources: BCG (2024), Hackett (2025), Procurement Leaders Sourcing Pulse (2024)."
+    },
+    "caseStudy": {
+      "client": "Specialty Chemicals Group",
+      "clientMeta": "Specialty chemicals · 11,000 employees · 240 Request for Anything (RFx) events p.a.",
+      "headline": {
+        "value": "€4.2M",
+        "label": "Additional EUR savings realized, year 1",
+        "sub": "Hard savings on previously thin bid files · €300M sourced · 70% via Lio · +2% uplift"
+      },
+      "stats": [
+        {
+          "label": "Hours freed / week per FTE",
+          "value": "~11 h"
+        },
+        {
+          "label": "Quotes per event (mechanism)",
+          "value": "1.6×"
+        },
+        {
+          "label": "Response rate",
+          "value": "55% → 89%"
+        }
+      ],
+      "quote": {
+        "text": "Supplier response rates were our biggest pain. The agent personalizes outreach in the supplier's language, answers their questions instantly in context, and chases reminders without making us look pushy. We went from 55% to 89% response rate - and the deeper quote files translated into roughly €4.2M of hard savings we would never have surfaced on thin bid files.",
+        "role": "Head of Category Management, Specialty Chemicals Group"
+      }
+    }
+  },
+  {
+    "id": "agentic-auctions",
+    "name": "Agentic Auctions",
+    "category": "s2c",
+    "tagline": "Auctions on every sourcing event - right format, auto-built from your tender, run to award.",
+    "intro": {
+      "description": "Setting up an auction takes a full day. So we auction the top fifteen categories a year and rubber-stamp the other eighty. The savings sit in plain sight.",
+      "flow": [
+        "Tender analyzed",
+        "Best format chosen",
+        "Setup auto-populated",
+        "Auction run live",
+        "Award recommended"
+      ],
+      "impact": [
+        {
+          "label": "Additional savings",
+          "value": "up to 7%",
+          "sub": "on top of RfQ baseline"
+        },
+        {
+          "label": "Auctions per Full-Time Equivalent (FTE)",
+          "value": "5-10×",
+          "sub": "vs. manual setup"
+        },
+        {
+          "label": "Setup time",
+          "value": "3 h",
+          "sub": "auto-populated from the running tender (vs. 4 days manually)"
+        },
+        {
+          "label": "Auction coverage",
+          "value": "all",
+          "sub": "events <€500k now feasible"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Additional savings",
+          "value": "up to 7%",
+          "sub": "on top of RfQ baseline"
+        },
+        {
+          "label": "Auctions per FTE",
+          "value": "5-10×",
+          "sub": "vs. manual setup"
+        },
+        {
+          "label": "Setup time",
+          "value": "3 h",
+          "sub": "from the live tender (vs. 4 days)"
+        },
+        {
+          "label": "Coverage",
+          "value": "all events",
+          "sub": "<€500k now feasible"
+        }
+      ],
+      "calculator": {
+        "headline": "Additional savings via auction coverage",
+        "inputs": [
+          {
+            "id": "spend",
+            "label": "Annual sourced spend",
+            "unit": "€",
+            "min": 50000000,
+            "max": 5000000000,
+            "default": 400000000,
+            "step": 10000000,
+            "format": "«ref»"
+          }
+        ],
+        "formulaSource": "e=>{const n=e.spend*.024;return[{label:\"Lio blended auction uplift\",value:2.4,unit:\"%\",display:`${2.4}%`},{label:\"Additional savings per year\",value:n,unit:\"€\",highlight:!0,display:U(n)}]}"
+      },
+      "rationale": "The savings rate per auction (up to 7% on top of RfQ) is well established - what was always missing is coverage and right format per event. Humans set up maybe a dozen auctions per quarter and default to one format. The agent extends auctions to every event where they make economic sense and picks the format based on market dynamics. Sources: BCG (2024), McKinsey Digital Sourcing (2024), SAP Ariba auction benchmarks (2025)."
+    },
+    "caseStudy": {
+      "client": "Industrial Automation Group",
+      "clientMeta": "Discrete manufacturing · 6,000 employees · €180M sourced",
+      "headline": {
+        "value": "€4.2M",
+        "label": "Additional savings realized (38 → 92 auctions executed)",
+        "sub": "First 12 months · €78M sourced via auctions"
+      },
+      "stats": [
+        {
+          "label": "Avg. savings / auction",
+          "value": "4.8%"
+        },
+        {
+          "label": "Setup time / auction",
+          "value": "4 d → 3 h"
+        },
+        {
+          "label": "Auctions <€500k",
+          "value": "0 → 47"
+        }
+      ],
+      "quote": {
+        "text": "We used to run e-auctions only on our top-15 categories - everything else got an RfQ and a handshake. Now the agent reads the tender, picks the right auction format, sets it up in hours and runs it while we sleep. We doubled auction volume year-on-year and added €4.2M in savings on spend that had never seen competitive bidding pressure.",
+        "role": "VP Indirect Procurement, Industrial Automation Group"
+      }
+    }
+  },
+  {
+    "id": "agentic-scenario-building",
+    "name": "Agentic Scenario Building",
+    "category": "s2c",
+    "tagline": "Award scenarios via plain-language prompting - minutes, not analyst weekends.",
+    "intro": {
+      "description": "Scenario modeling is the most analyst-intensive step in sourcing - hours of Excel, or a licensed platform that needs Information Technology (IT) setup per event. The analyst weekend is gone before the award decision is even discussed.",
+      "flow": [
+        "Ingest",
+        "Prompt",
+        "Model",
+        "Compare",
+        "Refine",
+        "Export"
+      ],
+      "impact": [
+        {
+          "label": "Time to first scenario",
+          "value": "< 5 min",
+          "sub": "vs. hours of Excel build"
+        },
+        {
+          "label": "Scenarios iterated / event",
+          "value": "10+",
+          "sub": "vs. 2-3 manually before the analyst stops"
+        },
+        {
+          "label": "Award uplift",
+          "value": "+up to 4%",
+          "sub": "vs. lowest-bid naive award"
+        },
+        {
+          "label": "Institutional memory",
+          "value": "retained",
+          "sub": "constraint logic reused across events"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Time to first scenario",
+          "value": "< 5 min",
+          "sub": "vs. hours of Excel build"
+        },
+        {
+          "label": "Scenarios per event",
+          "value": "10+",
+          "sub": "vs. 2-3 manually"
+        },
+        {
+          "label": "Award uplift",
+          "value": "+up to 4%",
+          "sub": "vs. naive lowest-bid award"
+        },
+        {
+          "label": "Memory across events",
+          "value": "retained",
+          "sub": "prior constraints reused"
+        }
+      ],
+      "calculator": {
+        "headline": "Analyst hours freed AND additional EUR from optimized awards",
+        "inputs": [
+          {
+            "id": "events",
+            "label": "Sourcing events per year",
+            "unit": "",
+            "min": 10,
+            "max": 500,
+            "default": 80,
+            "step": 10
+          },
+          {
+            "id": "spend",
+            "label": "Annual awarded spend",
+            "unit": "€",
+            "min": 100000000,
+            "max": 5000000000,
+            "default": 500000000,
+            "step": 50000000,
+            "format": "«ref»"
+          }
+        ],
+        "formulaSource": "e=>{const n=e.events*12,r=n/40,a=e.spend*(1.7/100);return[{label:\"Hours saved per event (8 scenarios × 90 min)\",value:12,unit:\"h\",display:\"12 h\"},{label:\"Analyst hours freed per year\",value:n,unit:\"h\",highlight:!0,display:`~${Math.round(n).toLocaleString(\"en-US\")} h ≈ ${r.toFixed(0)} analyst weeks`},{label:\"Additional savings per year (×1.7% blended award uplift)\",value:a,unit:\"€\",highlight:!0,display:U(a)}]}"
+      },
+      "rationale": "Why prompting beats spreadsheets and platforms: spreadsheets break under stacked constraints. Platforms require configuration per event. The Scenario Agent removes both - plain-language prompting, multi-variable optimization in seconds, full institutional memory across events. The analyst's weekend is back, and the bid file gets ten iterations instead of two. Sources: internal Lio Scenario Agent memo (2026), Coupa/Keelvar (2025), McKinsey advanced bid analysis (2024)."
+    },
+    "caseStudy": {
+      "client": "Multi-Category Manufacturer",
+      "clientMeta": "~14,000 employees · €1.2B sourced spend",
+      "headline": {
+        "value": "24 wk",
+        "label": "Analyst weeks freed per year (≈960 h saved)",
+        "sub": "Plus +2.8% award uplift = €8.4M additional savings"
+      },
+      "stats": [
+        {
+          "label": "Time to first scenario",
+          "value": "< 5 min"
+        },
+        {
+          "label": "Scenarios per event",
+          "value": "8 → 12"
+        },
+        {
+          "label": "Award uplift",
+          "value": "+2.8%"
+        }
+      ],
+      "quote": {
+        "text": "We used to build two or three scenarios per event in Excel because there wasn't time for more. Now the analyst describes the scenario in a sentence, the agent runs it in seconds, and we iterate ten times before lunch. The weekend is back, and the constraint logic from the last event carries into the next one automatically.",
+        "role": "VP Strategic Sourcing, Multi-Category Manufacturer"
+      }
+    },
+    "deepDive": {
+      "template": "scenario-library",
+      "tabLabel": "Scenario library",
+      "header": "Scenario library",
+      "subtitle": "Four tiers, fifteen scenarios - what the agent handles out of the box. Recognise your own.",
+      "tiers": [
+        {
+          "label": "Tier 1",
+          "title": "Simple",
+          "descriptor": "single variable, one constraint",
+          "examples": [
+            "Lowest-cost single award",
+            "Incumbent retention with cost check",
+            "Volume split across two suppliers"
+          ]
+        },
+        {
+          "label": "Tier 2",
+          "title": "Moderate",
+          "descriptor": "multi-variable, business rules",
+          "examples": [
+            "Geographic redundancy with cost cap",
+            "Supplier diversity minimum",
+            "Tiered pricing volume unlock",
+            "Strategic-supplier category carve-out"
+          ]
+        },
+        {
+          "label": "Tier 3",
+          "title": "Complex",
+          "descriptor": "stacked constraints, sensitivity, Total Cost of Ownership (TCO)",
+          "examples": [
+            "Multi-constraint award optimization",
+            "Demand volatility sensitivity",
+            "Total-Cost-of-Ownership normalization",
+            "Contract-cliff risk mitigation"
+          ]
+        },
+        {
+          "label": "Tier 4",
+          "title": "Advanced",
+          "descriptor": "cross-category, multi-year, full supply base",
+          "examples": [
+            "Cross-category bundled awards",
+            "Multi-year escalation clause modeling",
+            "Should-cost anchored negotiation",
+            "Full supply base weighted rebalancing"
+          ]
+        }
+      ],
+      "footnote": "Source: internal Lio Scenario Agent memo (2026)."
+    }
+  },
+  {
+    "id": "agentic-tenders",
+    "name": "Agentic Tenders",
+    "category": "others",
+    "tagline": "Run structured public and private tenders, including auctions, with agents handling every supplier interaction.",
+    "intro": {
+      "description": "Public and private tenders are heavy on documentation, rounds, and supplier coordination. Most teams either fight a legacy tendering platform or run tenders out of email and spreadsheets, losing audit trail and burning analyst weeks per event.",
+      "flow": [
+        "Tender designed",
+        "Suppliers invited",
+        "Q&A handled",
+        "Bids collected",
+        "Award processed"
+      ],
+      "impact": [
+        {
+          "label": "Platform integration",
+          "value": "any",
+          "sub": "connects to existing tools or runs in Lio"
+        },
+        {
+          "label": "Supplier interactions",
+          "value": "100%",
+          "sub": "agent-handled, full audit trail"
+        },
+        {
+          "label": "Tender cycle",
+          "value": "-50%",
+          "sub": "vs. manual coordination"
+        },
+        {
+          "label": "Compliance",
+          "value": "full audit",
+          "sub": "every interaction logged by default"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Platform integration",
+          "value": "any",
+          "sub": "connects to existing tools or runs in Lio"
+        },
+        {
+          "label": "Supplier interactions",
+          "value": "100%",
+          "sub": "agent-handled, full audit trail"
+        },
+        {
+          "label": "Tender cycle",
+          "value": "-50%",
+          "sub": "vs. manual coordination"
+        },
+        {
+          "label": "Compliance",
+          "value": "full audit",
+          "sub": "every interaction logged"
+        }
+      ],
+      "calculator": {
+        "headline": "Additional savings from structured, agent-run tenders",
+        "inputs": [
+          {
+            "id": "spend",
+            "label": "Annual spend tendered",
+            "unit": "",
+            "min": 50000000,
+            "max": 5000000000,
+            "default": 400000000,
+            "step": 50000000,
+            "format": "«ref»"
+          }
+        ],
+        "formulaSource": "e=>{const t=e.spend*.015;return[{label:\"Annual spend tendered\",value:e.spend,unit:\"\",display:U(e.spend)},{label:\"Lio blended uplift\",value:1.5,unit:\"%\",display:\"1.5%\"},{label:\"Additional savings per year\",value:t,unit:\"\",display:U(t),highlight:!0}]}"
+      },
+      "rationale": "Tenders and auctions are the same negotiation event in two modes. Splitting them across two tools means duplicated supplier interactions, broken audit trail, and analyst weekends consolidating the data. One platform with agents running the supplier layer collapses both into one event. Cycle reduction is additional value, captured as freed analyst weeks (~10 per €100M of tendered spend) rather than EUR savings."
+    },
+    "caseStudy": {
+      "client": "Multi-national Infrastructure Operator",
+      "clientMeta": "~10,000 employees · €400M annual tender volume · 80 tenders/yr",
+      "headline": {
+        "value": "2.4×",
+        "label": "Faster tender to award",
+        "sub": "12 weeks → 5 weeks with Lio · first 12 months · 80 tenders run"
+      },
+      "stats": [
+        {
+          "label": "Supplier interactions logged",
+          "value": "100%"
+        },
+        {
+          "label": "Analyst hours saved",
+          "value": "4,800 / yr"
+        },
+        {
+          "label": "Tenders run per year",
+          "value": "+35% on same headcount"
+        }
+      ],
+      "quote": {
+        "text": "We used to run tenders across three places: the public-tender portal for the formal process, email for clarifications, and Excel for bid comparison. The agent now handles every supplier interaction on one connected layer, and we have a full audit trail by default. Tender cycle dropped from 12 weeks to 5 on average, and analyst weekends are back to being weekends.",
+        "role": "Head of Strategic Procurement"
+      }
+    }
+  },
+  {
+    "id": "agentic-evaluation",
+    "name": "Agentic Evaluation",
+    "category": "others",
+    "tagline": "Structured bid comparison, normalized and scored on your criteria, ready for award in minutes.",
+    "intro": {
+      "description": "Bids arrive in eight different formats from twelve different suppliers. Normalizing them, applying your decision criteria, and producing a defensible comparison is hours of analyst work per event. Award decisions slip because the analysis time runs out before the deadline.",
+      "flow": [
+        "Bids received",
+        "Normalized into one structure",
+        "Decision criteria applied",
+        "Ranked comparison built",
+        "Award-ready output"
+      ],
+      "impact": [
+        {
+          "label": "Time to comparison",
+          "value": "minutes",
+          "sub": "vs. analyst weekends"
+        },
+        {
+          "label": "Format support",
+          "value": "any",
+          "sub": "PDF, Excel, custom, free-text"
+        },
+        {
+          "label": "Criteria scoring",
+          "value": "weighted",
+          "sub": "defensible, transparent"
+        },
+        {
+          "label": "Award-ready output",
+          "value": "immediate",
+          "sub": "no manual reformat for stakeholders"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Time to comparison",
+          "value": "minutes",
+          "sub": "vs. analyst weekends"
+        },
+        {
+          "label": "Format support",
+          "value": "any",
+          "sub": "PDF, Excel, custom, free-text"
+        },
+        {
+          "label": "Criteria scoring",
+          "value": "weighted",
+          "sub": "defensible, transparent"
+        },
+        {
+          "label": "Award-ready output",
+          "value": "immediate",
+          "sub": "no manual reformat"
+        }
+      ],
+      "calculator": {
+        "headline": "Analyst hours freed by automated normalization and scoring",
+        "inputs": [
+          {
+            "id": "events",
+            "label": "Evaluation events per year",
+            "unit": "events",
+            "min": 10,
+            "max": 500,
+            "default": 120,
+            "step": 10
+          }
+        ],
+        "formulaSource": "e=>{const t=e.events*16;return[{label:\"Evaluation events per year\",value:e.events,unit:\"\",display:`${e.events}`},{label:\"Hours saved per event\",value:16,unit:\"h\",display:\"16 h\"},{label:\"Analyst hours freed per year\",value:t,unit:\"h\",display:`${t.toLocaleString(\"en-US\")} h ≈ ${Math.round(t/40)} analyst weeks`,highlight:!0}]}"
+      },
+      "rationale": "The hard part of evaluation is not the scoring - it's getting twelve heterogeneous bids into one comparable structure. The agent owns the normalization. Scoring and ranking on your criteria follow in seconds, and the output lands stakeholder-ready instead of as a spreadsheet that needs a translator."
+    },
+    "caseStudy": {
+      "client": "Multi-category Manufacturer",
+      "clientMeta": "~14,000 employees · 180 strategic evaluations per year",
+      "headline": {
+        "value": "120×",
+        "label": "Faster bid normalization and scoring",
+        "sub": "16 h → 8 min with Lio · first 12 months · 180 evaluations"
+      },
+      "stats": [
+        {
+          "label": "Analyst hours freed",
+          "value": "2,880 / yr"
+        },
+        {
+          "label": "Bid formats handled",
+          "value": "any"
+        },
+        {
+          "label": "Stakeholder rework needed",
+          "value": "~0"
+        }
+      ],
+      "quote": {
+        "text": "Bid evaluation used to be the bottleneck of every strategic event. Two days of an analyst reformatting bids into Excel, then half a day scoring them. The agent now normalizes every bid the moment it arrives, scores against our weighted criteria, and produces a stakeholder-ready comparison in minutes. We've reclaimed our analyst team for sourcing strategy.",
+        "role": "Director, Strategic Sourcing"
+      }
+    }
+  },
+  {
+    "id": "agentic-opportunity-assessment",
+    "name": "Agentic Opportunity Assessment",
+    "category": "others",
+    "tagline": "Strategy-engagement depth in 1 week - on-site, mapping data, surfacing opportunities, going live with a working agent.",
+    "intro": {
+      "description": "Procurement transformation projects take 12+ weeks of consulting, end with a slide deck, and rarely deliver a working system. The gap between analysis and impact is the entire project.",
+      "flow": [
+        "Data Discovery",
+        "Opportunity Mapping",
+        "Agent Matching",
+        "Value Realization"
+      ],
+      "impact": [
+        {
+          "label": "Engagement duration",
+          "value": "1 week",
+          "sub": "vs. 12 weeks of consulting"
+        },
+        {
+          "label": "Delivery format",
+          "value": "on-site",
+          "sub": "with your team, not a deck"
+        },
+        {
+          "label": "Output",
+          "value": "working agent",
+          "sub": "in production, not slideware"
+        },
+        {
+          "label": "Outcome",
+          "value": "live impact",
+          "sub": "measurable from day 8"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Engagement duration",
+          "value": "1 week",
+          "sub": "vs. 12 weeks"
+        },
+        {
+          "label": "Delivery format",
+          "value": "on-site",
+          "sub": "with your team"
+        },
+        {
+          "label": "Output",
+          "value": "working agent",
+          "sub": "in production"
+        },
+        {
+          "label": "Outcome",
+          "value": "live impact",
+          "sub": "measurable from day 8"
+        }
+      ],
+      "calculator": {
+        "headline": "Annual pipeline identified in week one",
+        "inputs": [
+          {
+            "id": "spend",
+            "label": "Annual procurement spend in scope",
+            "unit": "",
+            "min": 100000000,
+            "max": 5000000000,
+            "default": 500000000,
+            "step": 50000000,
+            "format": "«ref»"
+          }
+        ],
+        "formulaSource": "e=>{const t=e.spend*.06;return[{label:\"Annual procurement spend in scope\",value:e.spend,unit:\"\",display:U(e.spend)},{label:\"Pipeline identified in assessment\",value:6,unit:\"%\",display:\"6%\"},{label:\"Annual value identified\",value:t,unit:\"\",display:U(t),highlight:!0}]}"
+      },
+      "rationale": "Traditional consulting trades depth for time. Lio's assessment trades time for proof: we map your data live, surface opportunities live, match agents live, and leave one running in production. You can argue with a slide deck for months. You can't argue with an agent that's already booking savings. 6% is the conservative midpoint; engagements typically surface 4-10% of procurement spend as addressable. Year-1 realization rate: 40-60% of identified pipeline."
+    },
+    "caseStudy": {
+      "client": "Mid-cap Industrial Manufacturer",
+      "clientMeta": "~6,000 employees · €500M procurement spend",
+      "headline": {
+        "value": "€30M",
+        "label": "Annual pipeline identified in week one",
+        "sub": "1-week assessment · 1 of 5 mapped agents live by day 8"
+      },
+      "stats": [
+        {
+          "label": "Engagement length",
+          "value": "1 week"
+        },
+        {
+          "label": "Agents live by day 8",
+          "value": "1 of 5 mapped"
+        },
+        {
+          "label": "First-quarter realized savings",
+          "value": "€420k"
+        }
+      ],
+      "quote": {
+        "text": "We were three months into evaluating consulting proposals when we ran the Lio assessment instead. By the end of week one, we had a prioritized opportunity map, an agent matched to each of the top five savings levers, and one was already running in production. The agent that went live captured €420k in the first quarter alone, more than the assessment cost.",
+        "role": "Chief Procurement Officer"
+      }
+    }
+  },
+  {
+    "id": "contract-creation",
+    "name": "Contract Creation Agent",
+    "category": "others",
+    "tagline": "Draft, redline and finalize contracts from negotiated positions, with deviations from your standard clauses flagged automatically.",
+    "intro": {
+      "description": "Contract drafting is a weeks-long ping-pong between procurement, legal, and the supplier. Every non-standard clause triggers an escalation, every redline round adds days, and final signature waits behind a legal queue nobody owns.",
+      "flow": [
+        "Negotiated positions captured",
+        "Draft generated from your templates",
+        "Deviations from standard clauses flagged",
+        "Redline managed with supplier",
+        "Signature-ready package delivered"
+      ],
+      "impact": [
+        {
+          "label": "Drafting time",
+          "value": "hours",
+          "sub": "vs. days of legal back-and-forth"
+        },
+        {
+          "label": "Clause deviation flagging",
+          "value": "automatic",
+          "sub": "every non-standard clause surfaced"
+        },
+        {
+          "label": "Redline rounds",
+          "value": "-50%",
+          "sub": "cleaner first draft, fewer iterations"
+        },
+        {
+          "label": "Time to signature",
+          "value": "-60%",
+          "sub": "vs. manual ping-pong"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Drafting time",
+          "value": "hours",
+          "sub": "vs. days of back-and-forth"
+        },
+        {
+          "label": "Clause deviation flagging",
+          "value": "automatic",
+          "sub": "every deviation surfaced"
+        },
+        {
+          "label": "Redline rounds",
+          "value": "-50%",
+          "sub": "cleaner first draft"
+        },
+        {
+          "label": "Time to signature",
+          "value": "-60%",
+          "sub": "vs. manual ping-pong"
+        }
+      ],
+      "calculator": {
+        "headline": "Hours freed across legal and procurement",
+        "inputs": [
+          {
+            "id": "contracts",
+            "label": "Contracts per year",
+            "unit": "",
+            "min": 50,
+            "max": 5000,
+            "default": 400,
+            "step": 50
+          }
+        ],
+        "formulaSource": "e=>{const t=e.contracts*6;return[{label:\"Contracts per year\",value:e.contracts,unit:\"\",display:`${e.contracts.toLocaleString(\"en-US\")}`},{label:\"Hours saved per contract\",value:6,unit:\"h\",display:\"6 h\"},{label:\"Hours freed per year\",value:t,unit:\"h\",display:`${t.toLocaleString(\"en-US\")} h`,highlight:!0}]}"
+      },
+      "rationale": "Standard clauses move quickly. Non-standard clauses trigger legal escalation, supplier counter-redlines and weeks of silence. The agent surfaces every deviation on the first draft, sets it side-by-side with your standard, and routes it to the right approver. The escalation queue stops being a queue."
+    },
+    "caseStudy": {
+      "client": "Multi-format Retailer",
+      "clientMeta": "~22,000 employees · ~600 supplier contracts per year",
+      "headline": {
+        "value": "4.6×",
+        "label": "Faster contract close",
+        "sub": "6 weeks → 9 days with Lio · first 12 months · 580 contracts drafted"
+      },
+      "stats": [
+        {
+          "label": "Contracts closed per year",
+          "value": "580"
+        },
+        {
+          "label": "Legal hours freed",
+          "value": "3,200 / yr"
+        },
+        {
+          "label": "Redline rounds",
+          "value": "-52%"
+        }
+      ],
+      "quote": {
+        "text": "Our contracting bottleneck wasn't volume - it was the clause escalations. Every other contract had a non-standard term that triggered legal review, three rounds of redlining, and a two-week silence somewhere. The agent now flags every deviation on the first draft, routes it to the right approver, and we close contracts in days instead of weeks. Legal love it more than we do.",
+        "role": "VP Procurement Operations"
+      }
+    }
+  },
+  {
+    "id": "contract-surveillance-agent",
+    "name": "Contract Surveillance Agent",
+    "category": "p2s",
+    "order": 5,
+    "tagline": "Autonomously monitors every contract - flags when to renegotiate based on the current economic situation, and surfaces savings hidden in contracts you're already running.",
+    "intro": {
+      "description": "Sometimes opening a renegotiation is wrong: in a tight market you can end up with higher prices. Lio reads the current economic situation per category and flags only when conditions favor you. The agent surfaces; your team executes.",
+      "flow": [
+        "Monitor contracts",
+        "Read market conditions",
+        "Flag renewal opportunity",
+        "Surface hidden savings",
+        "Hand to buyer"
+      ],
+      "impact": [
+        {
+          "label": "Renewal savings",
+          "value": "up to 8%",
+          "sub": "additional, on flagged renewals"
+        },
+        {
+          "label": "Renewals captured",
+          "value": "85%",
+          "sub": "proactively flagged"
+        },
+        {
+          "label": "Active contracts",
+          "value": "+up to 5%",
+          "sub": "unrealized savings surfaced"
+        },
+        {
+          "label": "Coverage",
+          "value": "100%",
+          "sub": "contracts monitored live"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Lio renewal capture",
+          "value": "85%",
+          "sub": "of opportunities flagged"
+        },
+        {
+          "label": "Hidden savings rate",
+          "value": "4.5%",
+          "sub": "active contracts"
+        }
+      ],
+      "calculator": {
+        "headline": "Renewal + hidden savings opportunity",
+        "inputs": [
+          {
+            "id": "renewal",
+            "label": "Contract value renewing p.a.",
+            "unit": "€",
+            "min": 10000000,
+            "max": 5000000000,
+            "default": 150000000,
+            "step": 10000000,
+            "format": "«ref»"
+          },
+          {
+            "id": "active",
+            "label": "Total active contract value",
+            "unit": "€",
+            "min": 10000000,
+            "max": 10000000000,
+            "default": 500000000,
+            "step": 10000000,
+            "format": "«ref»"
+          }
+        ],
+        "breakdown": "e=>{const t=e.renewal*.08*.85,n=e.active*.15*.045,r=t+n;return[{rows:[{label:\"Contract value renewing p.a.\",value:U(e.renewal)},{label:\"Renewal savings rate\",value:\"8%\",op:\"×\",muted:!0},{label:\"Lio renewal capture rate\",value:\"85%\",op:\"×\",muted:!0}],total:{label:\"Renewal Savings Opportunity\",value:U(t)}},{rows:[{label:\"Total active contract value\",value:U(e.active)},{label:\"Addressable share\",value:\"15%\",op:\"×\",muted:!0},{label:\"Hidden savings rate\",value:\"4.5%\",op:\"×\",muted:!0}],total:{label:\"Hidden Savings Opportunity\",value:U(n)}},{rows:[{label:\"Renewal Savings Opportunity\",value:U(t)},{label:\"Hidden Savings Opportunity\",value:U(n),op:\"+\"}],total:{label:\"Total Opportunity p.a.\",value:U(r),highlight:!0}}]}",
+        "formulaSource": "e=>{const t=e.renewal*.08*.85,n=e.active*.15*.045;return[{label:\"Renewal savings opportunity\",value:t,unit:\"€\",display:U(t)},{label:\"Hidden savings opportunity\",value:n,unit:\"€\",display:U(n)},{label:\"Total opportunity p.a.\",value:t+n,unit:\"€\",highlight:!0,display:U(t+n)}]}"
+      },
+      "rationale": "The agent surfaces opportunities - your team executes. Assumptions: 8% renewal savings rate, 85% Lio capture rate on flagged renewals, 15% of active contracts addressable, 4.5% hidden savings rate on addressable volume. Typical capture rate on identified savings: up to 70%."
+    },
+    "caseStudy": {
+      "client": "Logistics & Transport Group",
+      "clientMeta": "European footprint · 8,500 employees · €420M contract base",
+      "headline": {
+        "value": "22% → 89%",
+        "label": "Renewals captured proactively",
+        "sub": "First 12 months · 1,400 contracts under management"
+      },
+      "stats": [
+        {
+          "label": "Renewal opportunity",
+          "value": "€11.4M"
+        },
+        {
+          "label": "Hidden savings",
+          "value": "€5.8M"
+        },
+        {
+          "label": "Auto-renewals stopped",
+          "value": "230"
+        }
+      ],
+      "quote": {
+        "text": "We had 1,400 active contracts and no idea which ones were quietly auto-renewing. The agent flagged 230 renewals we'd otherwise have missed - and surfaced €2.1M in unused volume rebates from one logistics partner alone.",
+        "role": "Head of Procurement Operations, Logistics & Transport Group"
+      }
+    },
+    "deepDive": {
+      "template": "non-compliance",
+      "tabLabel": "Cost of non-compliance",
+      "header": "Cost of non-compliance",
+      "subtitle": "What unmanaged contract risk costs you today.",
+      "pockets": [
+        {
+          "title": "Auto-renewal lock-in",
+          "value": "78%",
+          "context": "of renegotiation windows close unnoticed - stale prices roll forward another term.",
+          "source": "Aberdeen contract management (2025)."
+        },
+        {
+          "title": "Unclaimed rebates & tier discounts",
+          "value": "50%+",
+          "context": "of volume rebates never get claimed - the contracted savings don't materialise.",
+          "source": "Forrester / Ironclad (2025)."
+        },
+        {
+          "title": "Revenue leakage from poor contract management",
+          "value": "9%",
+          "context": "of revenue leaks through contract execution issues post-signature.",
+          "source": "World Commerce & Contracting (2025)."
+        }
+      ],
+      "calloutTitle": "On a €1B active contract base: €20-50M / year of unrealized value",
+      "calloutBody": "Sits in contracts you've already signed.",
+      "sourcesLine": "Sources: Aberdeen (2025), Forrester / Ironclad (2025), World Commerce & Contracting (2025)."
+    }
+  },
+  {
+    "id": "spend-to-contract-agent",
+    "name": "Spend-to-Contract Agent",
+    "category": "p2s",
+    "order": 6,
+    "tagline": "Turn maverick spend into negotiated framework agreements - automatically, at scale.",
+    "intro": {
+      "description": "Up to 50% of indirect spend runs without a framework. Every Purchase Order is a one-off first-offer price. The maverick spend report shows the number every quarter - never the contract action.",
+      "flow": [
+        "Maverick spend mapped",
+        "Suppliers prioritized",
+        "Contract drafted",
+        "Agent negotiates",
+        "Framework live"
+      ],
+      "impact": [
+        {
+          "label": "Contract coverage uplift",
+          "value": "+30%",
+          "sub": "on previously off-contract spend"
+        },
+        {
+          "label": "Savings on new contracts",
+          "value": "up to 10%",
+          "sub": "vs. first-offer pricing"
+        },
+        {
+          "label": "Time to contract",
+          "value": "2-4 weeks",
+          "sub": "vs. 4-6 months manually"
+        },
+        {
+          "label": "Coverage of priorities",
+          "value": "100%",
+          "sub": "every high-priority candidate addressed"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Contract coverage uplift",
+          "value": "+30%",
+          "sub": "on previously off-contract spend"
+        },
+        {
+          "label": "Lio blended negotiated rate",
+          "value": "3.75%",
+          "sub": "50% addressable × 7.5% rate"
+        },
+        {
+          "label": "Time to contract",
+          "value": "2-4 weeks",
+          "sub": "vs. 4-6 months manually"
+        }
+      ],
+      "calculator": {
+        "headline": "Hard savings on off-contract spend",
+        "inputs": [
+          {
+            "id": "spend",
+            "label": "Off-contract spend p.a.",
+            "unit": "€",
+            "min": 50000000,
+            "max": 5000000000,
+            "default": 400000000,
+            "step": 10000000,
+            "format": "«ref»"
+          }
+        ],
+        "formulaSource": "e=>{const n=e.spend*.0375;return[{label:\"Lio blended negotiated rate\",value:3.75,unit:\"%\",display:`${3.75}%`},{label:\"Hard savings per year\",value:n,unit:\"€\",highlight:!0,display:U(n)}]}"
+      },
+      "rationale": "Default 7.5% savings on the addressable share (~50%) of off-contract spend. Toggle the rate up to 10% for your category mix. Procurement teams know which spend should be under contract - they don't have the bandwidth to drive contracting at scale. The agent identifies, prioritizes, drafts and negotiates in parallel across dozens of suppliers. Coverage moves by up to 30% in year 1, and the negotiated savings stick across every future Purchase Order."
+    },
+    "caseStudy": {
+      "client": "Multi-format retailer",
+      "clientMeta": "~22,000 employees · €1.6B indirect spend · first 12 months",
+      "headline": {
+        "value": "7.8%",
+        "label": "Average savings on €260M of previously maverick spend",
+        "sub": "0 → €260M under contract · 73 of 80 contracting candidates closed"
+      },
+      "stats": [
+        {
+          "label": "Contracts signed",
+          "value": "73 / 80"
+        },
+        {
+          "label": "Contract coverage uplift",
+          "value": "+26%"
+        },
+        {
+          "label": "Time to contract",
+          "value": "5 months → 18 days"
+        }
+      ],
+      "quote": {
+        "text": "40% of our indirect spend had no framework - we knew it, we just couldn't get to it. The agent identified the top 80 contracting candidates, drafted, negotiated and closed new frameworks directly with suppliers. Average savings of 7.8% on €260M of previously maverick spend, without expanding the contracting team by a single Full-Time Equivalent (FTE).",
+        "role": "VP Indirect Procurement"
+      }
+    }
+  },
+  {
+    "id": "procurement-intelligence",
+    "name": "Agentic Data Analytics",
+    "category": "p2s",
+    "order": 1,
+    "tagline": "Data-driven insights from across your fragmented systems - live analytics and category strategy suggestions for any procurement question.",
+    "intro": {
+      "description": "Procurement data lives in 8+ systems. Answering a single question takes weeks of analyst work, and most savings opportunities stay hidden in data nobody has time to look at. Lio unifies everything live.",
+      "flow": [
+        "Enterprise Resource Planning (ERP) + Procure-to-Pay (P2P) + contracts",
+        "Unified spend cube",
+        "Insights & anomalies",
+        "Category strategy"
+      ],
+      "subCapabilities": [
+        {
+          "title": "Supplier Analysis",
+          "description": "Supplier base structure, performance, risk and spend exposure across the supplier portfolio."
+        },
+        {
+          "title": "Contract Analysis",
+          "description": "Coverage, expiry calendar, renegotiation opportunities, off-contract leakage."
+        },
+        {
+          "title": "Order / Spend Analysis",
+          "description": "Purchase Order patterns, fragmentation, bundling potential, anomalies."
+        }
+      ],
+      "impact": [
+        {
+          "label": "Additional savings",
+          "value": "up to 15%",
+          "sub": "identified on analyzed spend"
+        },
+        {
+          "label": "Time to insight",
+          "value": "-90%",
+          "sub": "minutes, not weeks"
+        },
+        {
+          "label": "Strategy",
+          "value": "live",
+          "sub": "continuously updated"
+        },
+        {
+          "label": "Coverage",
+          "value": "all systems",
+          "sub": "ERP · P2P · contracts"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Lio savings opportunity",
+          "value": "8%",
+          "sub": "conservative baseline"
+        },
+        {
+          "label": "Capture rate",
+          "value": "up to 70%",
+          "sub": "identified → realized"
+        }
+      ],
+      "calculator": {
+        "headline": "Additional savings opportunity identified",
+        "inputs": [
+          {
+            "id": "spend",
+            "label": "Spend under management",
+            "unit": "€",
+            "min": 10000000,
+            "max": 10000000000,
+            "default": 500000000,
+            "step": 10000000,
+            "format": "«ref»"
+          },
+          {
+            "id": "rate",
+            "label": "Lio savings opportunity",
+            "unit": "%",
+            "min": 4,
+            "max": 15,
+            "default": 8,
+            "step": 1
+          }
+        ],
+        "formulaSource": "e=>{const t=e.spend*(e.rate/100);return[{label:\"Savings opportunity identified\",value:t,unit:\"€\",highlight:!0,display:U(t)}]}"
+      },
+      "rationale": "Up to 15% is the opportunity Lio surfaces - your team executes. 90% less time to insight means strategies stay live, not snapshots gathering dust."
+    },
+    "caseStudy": {
+      "client": "Specialty Chemicals Group",
+      "clientMeta": "~11,000 employees · €2.4B procurement spend · 47 Material Groups",
+      "headline": {
+        "value": "47 / 47",
+        "label": "Material Groups with live data behind every refresh",
+        "sub": "Strategy refresh cadence enabled · 2 / year → on demand with Lio"
+      },
+      "stats": [
+        {
+          "label": "Time to insight",
+          "value": "6 weeks → 5 minutes"
+        },
+        {
+          "label": "Systems unified",
+          "value": "11 → 1"
+        },
+        {
+          "label": "Strategy updates supported",
+          "value": "3 / yr → live, on demand"
+        }
+      ],
+      "quote": {
+        "text": "Before Lio, every category review was an Excel marathon: six weeks of pulling data from Enterprise Resource Planning (ERP), Procure-to-Pay (P2P) and three regional systems, and we did it twice a year per category. Now the agent surfaces a defensible answer in minutes, and every Material Group strategy is refreshed whenever we ask - feedstock shifts, supplier risk changes, Business Unit (BU) pivots. Strategy stopped being a yearly project and became a live workflow.",
+        "role": "Director, Category Management"
+      }
+    }
+  },
+  {
+    "id": "agentic-strategy-creation",
+    "name": "Agentic Strategy Creation",
+    "category": "p2s",
+    "order": 2,
+    "tagline": "A complete Material Group Strategy - Current State, Objectives, Risks, Targets - in hours, not weeks.",
+    "intro": {
+      "description": "A Material Group Strategy takes three to six weeks: spend data analytics, supplier landscape mapping, external market intelligence, engineering and Business Unit (BU) alignment, risk assessment, target setting. Most categories don't have a current one - they run on outdated assumptions.",
+      "flow": [
+        "Spend ingested",
+        "Current state compiled",
+        "Risk topics surfaced",
+        "Objectives prioritized",
+        "Targets drafted"
+      ],
+      "impact": [
+        {
+          "label": "Strategy time",
+          "value": "hours",
+          "sub": "vs. weeks of analyst work"
+        },
+        {
+          "label": "Refresh cycle",
+          "value": "on-demand",
+          "sub": "re-runnable for any market or business change"
+        },
+        {
+          "label": "Savings uplift",
+          "value": "up to 4%",
+          "sub": "from acting on current vs. outdated assumptions"
+        },
+        {
+          "label": "Risk view",
+          "value": "continuous",
+          "sub": "vs. annual review cycles"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Strategy time",
+          "value": "hours",
+          "sub": "vs. weeks of analyst work"
+        },
+        {
+          "label": "Refresh cycle",
+          "value": "on-demand",
+          "sub": "re-runnable for any market or business change"
+        },
+        {
+          "label": "Savings uplift",
+          "value": "up to 4%",
+          "sub": "from acting on current vs. outdated assumptions"
+        },
+        {
+          "label": "Risk view",
+          "value": "continuous",
+          "sub": "vs. annual review cycles"
+        }
+      ],
+      "calculator": {
+        "headline": "Additional savings from unified, current strategies",
+        "inputs": [
+          {
+            "id": "spend",
+            "label": "Annual procurement spend under management",
+            "unit": "€",
+            "min": 100000000,
+            "max": 5000000000,
+            "default": 800000000,
+            "step": 10000000,
+            "format": "«ref»"
+          },
+          {
+            "id": "uplift",
+            "label": "Savings uplift from unified, current strategies",
+            "unit": "%",
+            "min": 1,
+            "max": 4,
+            "default": 2,
+            "step": 1,
+            "format": "e=>`${e}%`"
+          }
+        ],
+        "formulaSource": "e=>{const t=e.spend*(e.uplift/100);return[{label:\"Applied uplift\",value:e.uplift,unit:\"%\",display:`${e.uplift}%`},{label:\"Additional savings per year\",value:t,unit:\"€\",highlight:!0,display:U(t)}]}"
+      },
+      "rationale": "Why unified, current strategy wins: strategies built once and forgotten guide buyers to last year's market. When every Material Group has a current, unified strategy across the portfolio, buyers act on today's intelligence - and capture up to 4% more savings than when strategies are scattered or outdated. Sources: Strategy refresh, savings-uplift and risk-reduction benchmarks per Hackett category management studies (2025), McKinsey procurement value studies (2024)."
+    },
+    "caseStudy": {
+      "client": "Diversified Industrial Group",
+      "clientMeta": "47 Material Groups · €1.8B addressable spend · 24,000 employees",
+      "headline": {
+        "value": "~800 d",
+        "label": "Days freed across the category team, year 1",
+        "sub": "Plus ~€2.4M consulting spend avoided · all 47 MGs covered, refreshed quarterly"
+      },
+      "stats": [
+        {
+          "label": "MGs with current strategy",
+          "value": "12 → 47"
+        },
+        {
+          "label": "Avg. strategy build time",
+          "value": "18 d → < 1 d"
+        },
+        {
+          "label": "Refresh cadence",
+          "value": "annual → quarterly"
+        }
+      ],
+      "quote": {
+        "text": "We had current strategies for twelve of our forty-seven Material Groups. The other thirty-five ran on assumptions from 2023. The agent generated full strategy documents for every MG in a week - current state, ranked risks, prioritized objectives, concrete targets - and we now refresh them quarterly instead of once a year. The category managers spend their time deciding, not assembling.",
+        "role": "Chief Procurement Officer, Diversified Industrial Group"
+      }
+    }
+  },
+  {
+    "id": "agentic-strategy-execution",
+    "name": "Agentic Strategy Execution",
+    "category": "p2s",
+    "order": 3,
+    "tagline": "Three specialized agents apply your category strategy to the daily procurement workflow - bundling demand, surveilling contracts and converting maverick spend into managed agreements.",
+    "intro": {
+      "description": "A great strategy is wasted if execution doesn't follow. Most procurement orgs have the insight - they don't have the operational lift to bundle thousands of Purchase Orders (POs), watch every contract, and chase off-contract spend in parallel. Strategy stays shelfware.",
+      "flow": [
+        "Strategy received",
+        "Bundling opportunities executed",
+        "Contracts surveilled",
+        "Maverick spend contracted",
+        "Strategy realized as financial impact"
+      ],
+      "subCapabilities": [
+        {
+          "title": "Order Bundling Agent",
+          "description": "Finds where the same or similar materials are scattered across your Purchase Orders - and bundles them into negotiated savings.",
+          "to": "/agent/order-bundling-agent"
+        },
+        {
+          "title": "Contract Surveillance Agent",
+          "description": "Autonomously monitors every contract and framework agreement, proactively flags renewals, drives renegotiations, and realizes optimization potential.",
+          "to": "/agent/contract-surveillance-agent"
+        },
+        {
+          "title": "Spend-to-Contract Agent",
+          "description": "Turns maverick spend into negotiated framework agreements - identifies, prioritizes, drafts and negotiates new contracts at scale.",
+          "to": "/agent/spend-to-contract-agent"
+        }
+      ],
+      "impact": [
+        {
+          "label": "Bundling savings",
+          "value": "up to 15%",
+          "sub": "on consolidated volume"
+        },
+        {
+          "label": "Renewal savings",
+          "value": "Up to 8%",
+          "sub": "additional on flagged renewals"
+        },
+        {
+          "label": "Contract coverage uplift",
+          "value": "+30%",
+          "sub": "on previously off-contract spend"
+        },
+        {
+          "label": "Execution",
+          "value": "continuous",
+          "sub": "end-to-end, across all three agents"
+        }
+      ]
+    },
+    "caseStudy": {
+      "client": "Multi-national industrial conglomerate",
+      "clientMeta": "~25,000 employees · €1.5B procurement spend · operations in 14 countries",
+      "headline": {
+        "value": "5.2%",
+        "label": "Blended realized rate on addressable spend",
+        "sub": "0 → €78M total realized savings, year 1 · all three execution agents in production · €1B addressable spend"
+      },
+      "stats": [
+        {
+          "label": "Bundling savings realized",
+          "value": "€18M"
+        },
+        {
+          "label": "Renewal & optimization savings",
+          "value": "€34M"
+        },
+        {
+          "label": "New-contract savings",
+          "value": "€26M"
+        }
+      ],
+      "quote": {
+        "text": "Strategy used to die in PowerPoint. Now the strategy flows directly into action: the Bundling Agent identifies the consolidation moves on day one, Contract Surveillance catches the renegotiation windows we'd have missed, and the Spend-to-Contract Agent brings the long tail of maverick spend under negotiated frameworks. We realized €78M in year one across all three - measurable, traceable, on the same dashboard.",
+        "role": "Group Chief Procurement Officer"
+      }
+    }
+  },
+  {
+    "id": "agent-operating-procedures",
+    "name": "Scale your agents",
+    "category": "services",
+    "tagline": "Every buyer's personal Agent Builder - turn any routine task into a custom agent, in natural language, with no coding required.",
+    "intro": {
+      "description": "Strategic buyers lose roughly half their day to tactical work - quote comparisons, contract checks, supplier research, email drafting. Routine crowds out the strategic work they were actually hired for. Scale Your Agents gives every buyer their own building blocks: Agent Builder to turn any task into a live agent, Agentic Forms to capture structured intake, and an Agentic Performance Dashboard to see what every agent is doing.",
+      "flow": [
+        "Describe the task",
+        "Lio extracts the steps",
+        "Configure tools & data",
+        "Test & refine",
+        "Agent live in hours"
+      ],
+      "impact": [
+        {
+          "label": "Routine baseline",
+          "value": "2 h / day",
+          "sub": "the workload Lio acts on per buyer"
+        },
+        {
+          "label": "Tasks automated",
+          "value": "45%",
+          "sub": "of routine work, per buyer"
+        },
+        {
+          "label": "Custom agents built",
+          "value": "1.6 / buyer",
+          "sub": "no Information Technology (IT) involvement"
+        },
+        {
+          "label": "Weekly adoption",
+          "value": "86%",
+          "sub": "active buyers, every week"
+        }
+      ],
+      "subCapabilities": [
+        {
+          "title": "Agent Builder",
+          "description": "Turn any routine task into a custom agent - natural language, no code, live in hours."
+        },
+        {
+          "title": "Agentic Forms",
+          "description": "Structured intake that routes requests to the right agent or workflow automatically."
+        },
+        {
+          "title": "Agentic Performance Dashboard",
+          "description": "See what every agent is doing - adoption, hours freed, quality, exceptions."
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Hours freed per buyer",
+          "value": "4.5 h / week",
+          "sub": "Lio benchmark"
+        },
+        {
+          "label": "Custom agents built",
+          "value": "1.6 / buyer",
+          "sub": "by month 6, self-serve"
+        }
+      ],
+      "calculator": {
+        "headline": "Team hours freed per week",
+        "inputs": [
+          {
+            "id": "buyers",
+            "label": "Buyers in your team",
+            "unit": "",
+            "min": 5,
+            "max": 500,
+            "default": 50,
+            "step": 1
+          }
+        ],
+        "formulaSource": "e=>{const t=e.buyers*4.5;return[{label:\"Hours freed per buyer per week\",value:4.5,unit:\"h\",display:\"4.5 h\"},{label:\"Team hours freed per week\",value:t,unit:\"h\",highlight:!0,display:rC(t)}]}"
+      },
+      "rationale": "Coding isn't the bottleneck - knowing the task is. Every buyer knows their own pain points. Agent Builder lets them automate them in natural language, with no IT ticket. By month 6, customers typically see ~1.6 custom agents built per buyer: pure compound productivity, no central rollout needed."
+    },
+    "caseStudy": {
+      "client": "Mid-cap Industrial Manufacturer",
+      "clientMeta": "~1,800 employees · Germany · 12 buyers · 6 months in",
+      "headline": {
+        "value": "+12%",
+        "label": "Strategic time recaptured per buyer",
+        "sub": "Time on tactical tasks: 55% → 43% with Lio"
+      },
+      "stats": [
+        {
+          "label": "Hours back per year",
+          "value": "2,376 h"
+        },
+        {
+          "label": "Custom agents built",
+          "value": "63"
+        },
+        {
+          "label": "Weekly active buyers",
+          "value": "52 / 52"
+        }
+      ],
+      "quote": {
+        "text": "In the first month, our buyers built forty small agents on their own: quote checkers, supplier comparisons, contract red-flag scanners. None of it required IT. Each person automates whatever frustrates them most. We get almost an hour of every buyer's day back, and they're spending it on negotiations, not paperwork.",
+        "role": "Head of Indirect Procurement"
+      }
+    }
+  },
+  {
+    "id": "forward-deployed-engineers",
+    "name": "Forward Deployed Engineers (FDEs)",
+    "category": "services",
+    "tagline": "Hire Lio engineers to build cutting-edge Artificial Intelligence (AI) agents with your team on-site, combining advanced AI expertise with your procurement knowledge.",
+    "intro": {
+      "description": "First-of-kind agents and complex multi-agent workflows are hard to design from scratch. Forward Deployed Engineers (FDEs) combine deep AI engineering with hands-on procurement reality, and ship production-ready systems in 2-6 weeks.",
+      "flow": [
+        "Engagement scoped",
+        "On-site discovery",
+        "Agent built jointly",
+        "Tested + deployed",
+        "Hand-over"
+      ],
+      "impact": [
+        {
+          "label": "Engagement",
+          "value": "2-6 weeks",
+          "sub": "vs. 3-6 months consulting"
+        },
+        {
+          "label": "Outcome",
+          "value": "live",
+          "sub": "production-ready, not a deck"
+        },
+        {
+          "label": "Best for",
+          "value": "novel",
+          "sub": "first-of-kind, multi-agent"
+        },
+        {
+          "label": "Hand-over",
+          "value": "full",
+          "sub": "your team owns it after"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Time to production",
+          "value": "4 weeks",
+          "sub": "vs. ≥6 months consulting"
+        },
+        {
+          "label": "Year-1 ROI multiple",
+          "value": "8×",
+          "sub": "Automotive Tier-1 case"
+        }
+      ],
+      "calculator": {
+        "headline": "Engagement payback in months",
+        "inputs": [
+          {
+            "id": "engagementCost",
+            "label": "Engagement cost",
+            "unit": "€",
+            "min": 50000,
+            "max": 1000000,
+            "default": 250000,
+            "step": 25000,
+            "format": "«ref»"
+          },
+          {
+            "id": "annualValue",
+            "label": "Annual value created by agent",
+            "unit": "€",
+            "min": 100000,
+            "max": 50000000,
+            "default": 2000000,
+            "step": 100000,
+            "format": "«ref»"
+          }
+        ],
+        "formulaSource": "e=>{const t=e.engagementCost/e.annualValue*12,n=e.annualValue/e.engagementCost;return[{label:\"Year-1 ROI\",value:n,unit:\"×\",display:`${n.toFixed(1)}×`},{label:\"Payback period\",value:t,unit:\"months\",highlight:!0,display:`${t<1?\"< 1\":t.toFixed(1)} months`}]}"
+      },
+      "rationale": "Most consulting firms have AI engineering OR procurement reality, not both - and most send a generalist team that learns on your dime. Forward Deployed Engineers (FDEs) do neither."
+    },
+    "caseStudy": {
+      "client": "Automotive Supplier Group",
+      "clientMeta": "Tier-1 components · 14,000 employees · First-of-kind multi-agent rollout",
+      "headline": {
+        "value": "≥6 months → 4 weeks",
+        "label": "Engagement to live system",
+        "sub": "Single 4-week engagement · production multi-agent"
+      },
+      "stats": [
+        {
+          "label": "Year-1 ROI",
+          "value": "8×"
+        },
+        {
+          "label": "Engagement length",
+          "value": "4 weeks"
+        },
+        {
+          "label": "Hand-over",
+          "value": "Complete"
+        }
+      ],
+      "quote": {
+        "text": "Two Forward Deployed Engineers (FDEs) flew in for four weeks, built it alongside our category team, and shipped it. By the time they left, our buyers were running the system independently. The engagement paid for itself inside two months.",
+        "role": "VP Procurement Transformation, Automotive Supplier Group"
+      }
+    }
+  },
+  {
+    "id": "lio-assistant",
+    "name": "Lio Assistant",
+    "category": "others",
+    "tagline": "A procurement-knowledge AI assistant: pre-trained, connected to your data, capable of reasoning and tool selection.",
+    "intro": {
+      "description": "Buyers do dozens of small reasoning tasks every day, comparing quotes, looking up supplier history, drafting emails, checking contract terms against precedent. Each takes minutes. Generic AI tools don't know your data, your suppliers, or your processes.",
+      "flow": [
+        "Question or task asked",
+        "Lio reasons with procurement context",
+        "Pulls from your data",
+        "Selects the right tool",
+        "Returns the answer or action"
+      ],
+      "impact": [
+        {
+          "label": "Pre-trained on",
+          "value": "procurement",
+          "sub": "suppliers, contracts, sourcing logic"
+        },
+        {
+          "label": "Connected to",
+          "value": "your data",
+          "sub": "ERP, P2P, contracts, supplier master"
+        },
+        {
+          "label": "Capabilities",
+          "value": "reasoning",
+          "sub": "context handling, tool selection"
+        },
+        {
+          "label": "For",
+          "value": "manual tasks",
+          "sub": "the ones you still do by hand"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "Pre-trained on",
+          "value": "procurement",
+          "sub": "suppliers, contracts, sourcing"
+        },
+        {
+          "label": "Connected to",
+          "value": "your data",
+          "sub": "ERP, P2P, contracts"
+        },
+        {
+          "label": "Capabilities",
+          "value": "reasoning",
+          "sub": "context + tool selection"
+        },
+        {
+          "label": "For",
+          "value": "manual tasks",
+          "sub": "the ones still done by hand"
+        }
+      ],
+      "calculator": {
+        "headline": "Team hours freed per week",
+        "inputs": [
+          {
+            "id": "buyers",
+            "label": "Buyers in your team",
+            "unit": "",
+            "min": 5,
+            "max": 500,
+            "default": 50,
+            "step": 5
+          }
+        ],
+        "formulaSource": "e=>{const t=e.buyers*3;return[{label:\"Buyers in your team\",value:e.buyers,unit:\"\",display:`${e.buyers}`},{label:\"Hours freed per buyer per week\",value:3,unit:\"h\",display:\"3 h\"},{label:\"Team hours freed per week\",value:t,unit:\"h\",display:`${t.toLocaleString(\"en-US\")} h/wk`,highlight:!0}]}"
+      },
+      "rationale": "Generic AI tools answer general questions. Lio Assistant answers your questions about your data, with the procurement context - supplier relationships, contract history, sourcing precedent - already loaded. The difference between a buyer typing into a generic chatbot and a buyer asking Lio is six minutes of context-setting per task."
+    },
+    "caseStudy": {
+      "client": "Mid-cap Industrial Services Group",
+      "clientMeta": "~3,500 employees · 24 buyers in scope",
+      "headline": {
+        "value": "3,600",
+        "label": "Team hours freed per year (24 buyers × 50 weeks)",
+        "sub": "0 → 3 h back per buyer per week · first 6 months"
+      },
+      "stats": [
+        {
+          "label": "Adoption",
+          "value": "22 / 24 weekly active"
+        },
+        {
+          "label": "Tasks supported",
+          "value": "reasoning, lookup, drafting"
+        },
+        {
+          "label": "Data sources connected",
+          "value": "7"
+        }
+      ],
+      "quote": {
+        "text": "Our buyers were typing the same supplier-context paragraphs into a generic chatbot before asking each question. Lio Assistant has the supplier, the contract history, and the procurement playbook already loaded - they ask one question and get an answer grounded in our data, not generic AI. Each buyer is back about three hours a week.",
+        "role": "Head of Procurement"
+      }
+    }
+  },
+  {
+    "id": "lio-operating-procedures",
+    "name": "Lio Operating Procedures",
+    "category": "others",
+    "tagline": "Turn Standard Operating Procedures (SOPs) into Agent Operating Procedures (AOPs) - one orchestration layer across buyers, suppliers, and requesters.",
+    "intro": {
+      "description": "Procurement runs on Standard Operating Procedures (SOPs) that live in PDFs. Every new automation re-interprets them, every integration is point-to-point, every tool is trained separately. There's no infrastructure to run agents at scale across buyers, suppliers, and requesters.",
+      "flow": [
+        "SOPs ingested",
+        "Translated into Agent Operating Procedures (AOPs)",
+        "Connected to data and tools",
+        "Buyer / supplier / requester layer linked",
+        "Orchestration live"
+      ],
+      "impact": [
+        {
+          "label": "SOP formats accepted",
+          "value": "any",
+          "sub": "PDF, Word, BPMN, free-form"
+        },
+        {
+          "label": "Infrastructure",
+          "value": "one layer",
+          "sub": "vs. point-to-point integrations"
+        },
+        {
+          "label": "Time to first AOP",
+          "value": "hours",
+          "sub": "vs. weeks of IT project"
+        },
+        {
+          "label": "Coverage",
+          "value": "end-to-end",
+          "sub": "buyers, suppliers, requesters"
+        }
+      ]
+    },
+    "businessCase": {
+      "valueDrivers": [
+        {
+          "label": "SOP formats accepted",
+          "value": "any",
+          "sub": "PDF, Word, BPMN, free-form"
+        },
+        {
+          "label": "Infrastructure",
+          "value": "one layer",
+          "sub": "vs. point-to-point"
+        },
+        {
+          "label": "Time to first AOP",
+          "value": "hours",
+          "sub": "vs. weeks"
+        },
+        {
+          "label": "Coverage",
+          "value": "end-to-end",
+          "sub": "buyers, suppliers, requesters"
+        }
+      ],
+      "calculator": {
+        "headline": "Annual value from operationalized procedures",
+        "inputs": [
+          {
+            "id": "sops",
+            "label": "SOPs to operationalize",
+            "unit": "",
+            "min": 10,
+            "max": 1000,
+            "default": 80,
+            "step": 10
+          }
+        ],
+        "formulaSource": "e=>{const t=e.sops*12e4;return[{label:\"SOPs to operationalize\",value:e.sops,unit:\"\",display:`${e.sops}`},{label:\"Value per SOP automated\",value:12e4,unit:\"\",display:\"€120k\"},{label:\"Annual value unlocked\",value:t,unit:\"\",display:U(t),highlight:!0}]}"
+      },
+      "rationale": "Every standalone procurement automation is a point integration: SOP-to-tool, tool-to-data, tool-to-tool. Lio Operating Procedures is the layer that turns the SOP itself into the integration. Add an agent, it inherits the infrastructure. Change a process, every agent picks it up. No re-integration project per change. Default per-SOP value covers analyst hours freed plus process-quality gains; range €40k-€250k depending on scope."
+    },
+    "caseStudy": {
+      "client": "Diversified Industrial Group",
+      "clientMeta": "~24,000 employees · 80 procurement SOPs across 6 sites",
+      "headline": {
+        "value": "€9.6M",
+        "label": "Annual value unlocked",
+        "sub": "0 → 80 AOPs in production · first 12 months"
+      },
+      "stats": [
+        {
+          "label": "Time to first AOP",
+          "value": "6 weeks → 4 hours"
+        },
+        {
+          "label": "Point integrations avoided",
+          "value": "~120"
+        },
+        {
+          "label": "Procurement sites connected",
+          "value": "6 / 6"
+        }
+      ],
+      "quote": {
+        "text": "Before, every new automation was a six-week IT project. We'd take an SOP from PDF, redocument it in BPMN, integrate it point-to-point with our Enterprise Resource Planning (ERP) system, train the team, and never reuse anything. Lio Operating Procedures made the SOP the infrastructure. We added 80 agentic procedures in the first year, none of them needed a fresh integration.",
+        "role": "Chief Procurement Officer"
+      }
+    }
+  }
+]

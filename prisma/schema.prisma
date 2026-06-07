@@ -1,0 +1,76 @@
+// Bots & Buyers — data model.
+// SQLite for local dev; swap `provider`/`url` to PostgreSQL for production
+// (schema is intentionally Postgres-portable — no enums, JSON stored as String).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("PRISMA_DATABASE_URL")
+  directUrl = env("DATABASE_URL_UNPOOLED")
+}
+
+/// A signed-in conference attendee. Identified by email (friction-free login).
+model Participant {
+  id                 String   @id @default(cuid())
+  email              String   @unique
+  name               String
+  company            String?
+  isExistingCustomer Boolean  @default(false)
+  isAdmin            Boolean  @default(false)
+  locale             String   @default("en")
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  allocations      Allocation[]
+  checkoutRequests CheckoutRequest[]
+  quizResults      QuizResult[]
+}
+
+/// One agent in a participant's set-up: how much of their €1M they backed it
+/// with (this is also their "vote"), plus any ROI-calculator inputs they set.
+model Allocation {
+  id            String      @id @default(cuid())
+  participantId String
+  participant   Participant @relation(fields: [participantId], references: [id], onDelete: Cascade)
+  agentId       String // maps to the static agent catalog
+  amountEur     Int         @default(0)
+  roiInputsJson String? // JSON string of the calculator slider values for this agent
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@unique([participantId, agentId])
+  @@index([agentId])
+}
+
+/// A conversion event at checkout — the thing sales follows up on.
+model CheckoutRequest {
+  id            String      @id @default(cuid())
+  participantId String
+  participant   Participant @relation(fields: [participantId], references: [id], onDelete: Cascade)
+  type          String // demo | offer | analysis | callback
+  note          String?
+  payloadJson   String // snapshot: selected agents, allocations, computed ROI totals
+  status        String      @default("new") // new | contacted | done
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@index([participantId])
+}
+
+/// Result of a "Wer wird Millionär" run.
+model QuizResult {
+  id            String      @id @default(cuid())
+  participantId String
+  participant   Participant @relation(fields: [participantId], references: [id], onDelete: Cascade)
+  score         Int         @default(0)
+  levelReached  Int         @default(0)
+  correctCount  Int         @default(0)
+  totalAnswered Int         @default(0)
+  locale        String      @default("en")
+  createdAt     DateTime    @default(now())
+
+  @@index([participantId])
+}

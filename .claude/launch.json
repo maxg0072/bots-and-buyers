@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "lio",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "/Users/maxgrau/Desktop/Lio WebApp/bots-and-buyers", "run", "dev"],
+      "port": 3000
+    }
+  ]
+}

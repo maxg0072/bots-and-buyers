@@ -1,26 +1,285 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
+
+/* =============================================================================
+   Lio "Agentic World" / Bots & Buyers — Design Tokens (ported 1:1 from the
+   production CI). Colors are HSL *triplets* (no hsl() wrapper) so they compose
+   with alpha — e.g. hsl(var(--agent) / 0.6). The @theme block wraps them with
+   hsl() so Tailwind utilities (bg-background, text-agent, …) resolve.
+   ============================================================================= */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* shadcn semantic tokens */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  /* Lio brand palette */
+  --color-lio-navy: hsl(var(--lio-navy));
+  --color-lio-slate: hsl(var(--lio-slate));
+  --color-lio-teal: hsl(var(--lio-teal));
+  --color-lio-sage: hsl(var(--lio-sage));
+  --color-lio-sand: hsl(var(--lio-sand));
+  --color-lio-cream: hsl(var(--lio-cream));
+  --color-lio-ink: hsl(var(--lio-ink));
+
+  /* Category accent — live-updates with [data-agent] thanks to `inline` */
+  --color-agent: hsl(var(--agent));
+  --color-agent-foreground: hsl(var(--agent-foreground));
+
+  /* Typography */
+  /* Helvetica Neue everywhere (system font; native on Apple, falls back to
+     Helvetica/Arial elsewhere). Headings + display numerals use it too. */
+  --font-sans: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  --font-serif: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  --font-heading: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Radius — deliberately sharp/editorial (~2px) */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 2);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  /* ---- shadcn semantic tokens (LIGHT — default) ---- */
+  --background: 36 25% 96%;          /* cream  #F7F5F2 */
+  --foreground: 213 56% 9%;          /* ink    #0A1624 */
+  --card: 0 0% 100%;
+  --card-foreground: 213 56% 9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 213 56% 9%;
+  --primary: 213 56% 9%;
+  --primary-foreground: 36 25% 96%;
+  --secondary: 36 22% 92%;
+  --secondary-foreground: 213 56% 9%;
+  --muted: 36 18% 90%;
+  --muted-foreground: 213 15% 38%;
+  --accent: 188 28% 37%;             /* teal */
+  --accent-foreground: 0 0% 100%;
+  --destructive: 11 86% 34%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 36 15% 84%;
+  --input: 36 15% 84%;
+  --ring: 213 56% 9%;
+  --radius: 0.125rem;
+
+  /* ---- Lio brand palette ---- */
+  --lio-navy: 213 56% 9%;            /* #0A1624 */
+  --lio-slate: 209 56% 12%;          /* #0D1F30 */
+  --lio-teal: 188 28% 37%;           /* #447279 */
+  --lio-sage: 178 23% 51%;           /* #659F9D */
+  --lio-sand: 22 30% 62%;            /* #BB9681 */
+  --lio-cream: 36 25% 96%;           /* #F7F5F2 */
+  --lio-ink: 213 56% 9%;             /* #0A1624 */
+
+  /* ---- Category accent system (set data-agent="<cat>" to re-theme) ---- */
+  --agent-services: var(--lio-navy);
+  --agent-srm: var(--lio-sand);
+  --agent-p2p: var(--lio-sage);
+  --agent-s2c: var(--lio-teal);
+  --agent-p2s: 42 92% 45%;           /* amber #DC9D09 */
+  --agent-others: 213 15% 38%;       /* slate #525F6F */
+  --agent: var(--agent-services);
+  --agent-foreground: 0 0% 100%;
+}
+
+.dark {
+  --background: 213 56% 9%;
+  --foreground: 36 25% 96%;
+  --card: 209 56% 12%;
+  --card-foreground: 36 25% 96%;
+  --popover: 209 56% 12%;
+  --popover-foreground: 36 25% 96%;
+  --primary: 36 25% 96%;
+  --primary-foreground: 213 56% 9%;
+  --secondary: 209 40% 16%;
+  --secondary-foreground: 36 25% 96%;
+  --muted: 209 30% 18%;
+  --muted-foreground: 36 15% 70%;
+  --accent: 188 28% 37%;
+  --accent-foreground: 36 25% 96%;
+  --destructive: 11 86% 52%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 209 30% 18%;
+  --input: 209 30% 18%;
+  --ring: 36 25% 96%;
+}
+
+/* ---- Category theming switch (drop data-agent on any container) ---- */
+[data-agent="services"] { --agent: var(--agent-services); }
+[data-agent="srm"]      { --agent: var(--agent-srm); }
+[data-agent="p2p"]      { --agent: var(--agent-p2p); }
+[data-agent="s2c"]      { --agent: var(--agent-s2c); }
+[data-agent="p2s"]      { --agent: var(--agent-p2s); }
+[data-agent="others"]   { --agent: var(--agent-others); }
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01", "cv01";
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* =============================================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================================= */
+.display-num {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  font-feature-settings: "tnum";
 }
+.label-uppercase {
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.68rem;
+  font-weight: 500;
+}
+
+/* =============================================================================
+   SIGNATURE SURFACES & DECORATION (category-tinted via --agent)
+   ============================================================================= */
+.shadow-lio {
+  box-shadow:
+    inset 0 1px #ffffffb3,
+    0 24px 60px -28px hsl(var(--lio-navy) / 0.18),
+    0 2px 8px -4px hsl(var(--agent) / 0.18);
+}
+.lio-hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(var(--lio-ink) / 0.14), transparent);
+}
+.lio-accent-rail { position: relative; }
+.lio-accent-rail::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: hsl(var(--agent));
+  border-radius: 999px;
+}
+.lio-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: hsl(var(--agent) / 0.12);
+  border: 1px solid hsl(var(--agent) / 0.35);
+  color: hsl(var(--lio-ink));
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.lio-surface-light {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(120% 70% at 100% 0%, hsl(var(--agent) / 0.18) 0%, transparent 55%),
+    radial-gradient(90% 70% at 0% 100%, hsl(var(--agent) / 0.1) 0%, transparent 60%),
+    linear-gradient(160deg, hsl(var(--lio-cream)), #fbfaf8);
+  border: 1px solid hsl(var(--agent) / 0.25);
+  box-shadow:
+    inset 0 1px #ffffffb3,
+    0 24px 60px -28px hsl(var(--lio-navy) / 0.18),
+    0 2px 8px -4px hsl(var(--agent) / 0.18);
+}
+.lio-stage {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(60% 50% at 85% 12%, hsl(var(--agent) / 0.18) 0%, transparent 60%),
+    radial-gradient(55% 45% at 8% 95%, hsl(var(--agent) / 0.1) 0%, transparent 65%),
+    linear-gradient(180deg, #fbfaf8, hsl(var(--lio-cream)) 55%, #efebe6);
+}
+.dark .lio-stage {
+  background:
+    radial-gradient(60% 50% at 85% 12%, hsl(var(--agent) / 0.22) 0%, transparent 60%),
+    radial-gradient(55% 45% at 8% 95%, hsl(var(--agent) / 0.12) 0%, transparent 65%),
+    linear-gradient(180deg, hsl(var(--lio-slate)), hsl(var(--lio-navy)));
+}
+.lio-hero-vignette {
+  background:
+    linear-gradient(180deg, transparent 30%, hsl(var(--lio-navy) / 0.55) 100%),
+    linear-gradient(90deg, hsl(var(--lio-navy) / 0.35) 0%, transparent 45%),
+    radial-gradient(80% 60% at 100% 0%, hsl(var(--agent) / 0.35) 0%, transparent 60%);
+}
+.lio-mega {
+  background: linear-gradient(180deg, hsl(var(--lio-ink)), hsl(var(--lio-slate)) 60%, hsl(var(--agent)) 130%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.dark .lio-mega {
+  background: linear-gradient(180deg, hsl(var(--lio-cream)), hsl(var(--lio-sand)) 130%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* =============================================================================
+   MOTION (exact keyframes ported from the original bundle)
+   ============================================================================= */
+@keyframes lio-rise {
+  0% { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes lio-slide-in {
+  0% { opacity: 0; transform: translateY(18px) scale(0.992); filter: blur(6px); }
+  60% { opacity: 1; filter: blur(0); }
+  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+@keyframes lio-ken-burns {
+  0% { transform: scale(1.04) translate(0); }
+  to { transform: scale(1.12) translate(-1.5%, -1%); }
+}
+.lio-rise { animation: lio-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.lio-rise-1 { animation-delay: 80ms; }
+.lio-rise-2 { animation-delay: 0.18s; }
+.lio-rise-3 { animation-delay: 0.3s; }
+.lio-rise-4 { animation-delay: 0.44s; }
+.lio-rise-5 { animation-delay: 0.56s; }
+.lio-slide-enter { animation: lio-slide-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.lio-ken-burns { animation: lio-ken-burns 18s ease-out both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lio-rise, .lio-slide-enter, .lio-ken-burns,
+  .lio-rise-1, .lio-rise-2, .lio-rise-3, .lio-rise-4, .lio-rise-5 {
+    animation: none !important;
+  }
+}
+
+/* Hide scrollbars on horizontal scrollers while keeping them scrollable */
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
