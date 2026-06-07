@@ -173,11 +173,12 @@
   font-feature-settings: "tnum";
   font-variant-numeric: tabular-nums;
 }
+/* Eyebrow / section label. Legacy class name kept (used in ~47 places); no
+   longer uppercase - sentence case reads more naturally than wall-to-wall caps. */
 .label-uppercase {
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  font-size: 0.68rem;
-  font-weight: 500;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0;
 }
 
 /* =============================================================================
