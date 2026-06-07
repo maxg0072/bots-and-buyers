@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { Slider } from "@/components/ui/slider";
 import type { CalculatorInput } from "@/lib/agents";
 import { runCalculator } from "@/lib/calculators";
-import { formatEur } from "@/lib/format";
+import { formatEur, sliderValue } from "@/lib/format";
 
 function formatInputValue(input: CalculatorInput, v: number): string {
   if (input.unit === "€") return formatEur(v);
@@ -56,8 +56,8 @@ export function RoiCalculator({
               min={input.min}
               max={input.max}
               step={input.step}
-              value={[values[input.id]]}
-              onValueChange={(v) => update(input.id, (v as number[])[0])}
+              value={[Number.isFinite(values[input.id]) ? values[input.id] : input.min]}
+              onValueChange={(v) => update(input.id, sliderValue(v))}
               aria-label={input.label}
             />
           </div>

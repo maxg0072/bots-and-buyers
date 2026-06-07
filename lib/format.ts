@@ -29,17 +29,31 @@ function trim(v: number): string {
 
 /** Full euro with grouping: €1,000,000. */
 export function formatEurFull(n: number): string {
+  if (!Number.isFinite(n)) return "€0";
   return `€${Math.round(n).toLocaleString("en-US")}`;
 }
 
 /** Plain grouped integer: 1,234. */
 export function formatInt(n: number): string {
+  if (!Number.isFinite(n)) return "0";
   return Math.round(n).toLocaleString("en-US");
 }
 
 /** Hours display, e.g. "~1,234 h/yr". */
 export function formatHours(n: number, suffix = "h"): string {
+  if (!Number.isFinite(n)) return `~0 ${suffix}`;
   return `~${Math.round(n).toLocaleString("en-US")} ${suffix}`;
+}
+
+/**
+ * Read a Base UI slider callback value. Base UI passes a plain `number` for a
+ * single-thumb slider (an array only for range sliders), so we normalize both
+ * shapes and guard against NaN/undefined - this is what keeps a stray slider
+ * value from turning the funnel/ROI totals into NaN and crashing the page.
+ */
+export function sliderValue(v: unknown): number {
+  const n = Array.isArray(v) ? v[0] : v;
+  return typeof n === "number" && Number.isFinite(n) ? n : 0;
 }
 
 export const ONE_MILLION = 1_000_000;

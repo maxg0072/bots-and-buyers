@@ -18,7 +18,7 @@ import {
   defaultInputs,
   hasCalculator,
 } from "@/lib/calculators";
-import { formatEur, formatEurFull, formatInt, ONE_MILLION } from "@/lib/format";
+import { formatEur, formatEurFull, formatInt, sliderValue, ONE_MILLION } from "@/lib/format";
 import { RoiCalculator } from "@/components/agents/roi-calculator";
 import { Slider } from "@/components/ui/slider";
 import { AddAgentsSheet } from "./add-agents-sheet";
@@ -303,13 +303,11 @@ export function Funnel({
                     </div>
                     <Slider
                       min={0}
-                      max={Math.max(STEP, maxForRow)}
+                      max={Math.max(STEP, Number.isFinite(maxForRow) ? maxForRow : ONE_MILLION)}
                       step={STEP}
-                      value={[it.amountEur]}
-                      onValueChange={(v) => setAmount(it.agentId, (v as number[])[0])}
-                      onValueCommitted={(v) =>
-                        flush(it.agentId, (v as number[])[0], it.inputs)
-                      }
+                      value={[Number.isFinite(it.amountEur) ? it.amountEur : 0]}
+                      onValueChange={(v) => setAmount(it.agentId, sliderValue(v))}
+                      onValueCommitted={(v) => flush(it.agentId, sliderValue(v), it.inputs)}
                       aria-label={`Budget for ${agent.name}`}
                     />
                   </div>
