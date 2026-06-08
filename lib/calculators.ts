@@ -261,14 +261,17 @@ export function roiContribution(
   let hardEur = 0;
   let hoursPerYear = 0;
   for (const o of outs) {
+    // Guard a NaN/undefined output (e.g. a corrupted or missing slider input):
+    // one NaN must not poison Math.max and turn the whole total into NaN.
+    const v = Number.isFinite(o.value) ? o.value : 0;
     if (o.unit === "€") {
-      hardEur = Math.max(hardEur, o.value);
+      hardEur = Math.max(hardEur, v);
     } else if (o.unit === "h") {
-      if (/year|yr/i.test(o.label)) hoursPerYear = Math.max(hoursPerYear, o.value);
+      if (/year|yr/i.test(o.label)) hoursPerYear = Math.max(hoursPerYear, v);
       else if (/per week|hours back|team hours/i.test(o.label))
-        hoursPerYear = Math.max(hoursPerYear, o.value * 46);
+        hoursPerYear = Math.max(hoursPerYear, v * 46);
     } else if (o.unit === "d") {
-      hoursPerYear = Math.max(hoursPerYear, o.value * 8);
+      hoursPerYear = Math.max(hoursPerYear, v * 8);
     }
   }
   return { hardEur, hoursPerYear };
@@ -277,5 +280,5 @@ export function roiContribution(
 /** Hours → full-time equivalents (1,840 productive hours / FTE / year). */
 export const HOURS_PER_FTE_YEAR = 1840;
 export function hoursToFte(hours: number): number {
-  return hours / HOURS_PER_FTE_YEAR;
+  return Number.isFinite(hours) ? hours / HOURS_PER_FTE_YEAR : 0;
 }
