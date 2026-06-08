@@ -2,6 +2,7 @@
 
 import { z } from "zod";
 import { getCurrentParticipant } from "@/lib/auth";
+import { getQuizLeaderboard, type QuizLeaderRow } from "@/lib/quiz";
 import { db } from "@/lib/db";
 
 const schema = z.object({
@@ -25,4 +26,11 @@ export async function saveQuizResult(input: {
   if (!parsed.success) return { ok: false };
   await db.quizResult.create({ data: { participantId: p.id, ...parsed.data } });
   return { ok: true };
+}
+
+/** Live global quiz ranking - polled by the quiz screen across all users. */
+export async function fetchQuizLeaderboard(): Promise<QuizLeaderRow[]> {
+  const p = await getCurrentParticipant();
+  if (!p) return [];
+  return getQuizLeaderboard(10);
 }

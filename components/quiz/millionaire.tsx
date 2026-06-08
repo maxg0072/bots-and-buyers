@@ -16,6 +16,8 @@ import {
   type Locale,
 } from "@/lib/content/quiz";
 import { saveQuizResult } from "@/app/(app)/millionaire/actions";
+import { QuizLeaderboard } from "./quiz-leaderboard";
+import type { QuizLeaderRow } from "@/lib/quiz";
 import { cn } from "@/lib/utils";
 
 const LETTERS = ["A", "B", "C", "D"];
@@ -99,7 +101,13 @@ function pickRun(): QuizQuestion[] {
 
 type Phase = "intro" | "play" | "end";
 
-export function Millionaire() {
+export function Millionaire({
+  initialLeaderboard,
+  meId,
+}: {
+  initialLeaderboard: QuizLeaderRow[];
+  meId?: string;
+}) {
   const [phase, setPhase] = useState<Phase>("intro");
   const [locale, setLocale] = useState<Locale>("de");
   const [name, setName] = useState("");
@@ -261,6 +269,10 @@ export function Millionaire() {
             {t("start")}
           </button>
         </div>
+
+        <div className="lio-rise lio-rise-3 mt-12 w-full max-w-sm">
+          <QuizLeaderboard initial={initialLeaderboard} meId={meId} />
+        </div>
       </div>
     );
   }
@@ -300,6 +312,10 @@ export function Millionaire() {
           >
             <Home className="h-4 w-4" /> Home
           </Link>
+        </div>
+
+        <div className="lio-rise mt-10 w-full max-w-sm">
+          <QuizLeaderboard initial={initialLeaderboard} meId={meId} />
         </div>
       </div>
     );
