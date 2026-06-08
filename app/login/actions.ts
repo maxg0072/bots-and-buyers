@@ -2,6 +2,7 @@
 
 import { z } from "zod";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { createSession } from "@/lib/session";
 
@@ -73,5 +74,8 @@ export async function loginAction(
   }
 
   await createSession(participantId);
+  // Drop any Router-Cache segments from a previously signed-in user so this
+  // login always starts on its OWN data (fresh €1M), never the prior user's.
+  revalidatePath("/", "layout");
   redirect("/");
 }

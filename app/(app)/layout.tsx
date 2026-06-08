@@ -4,6 +4,10 @@ import { getBudgetState } from "@/lib/funnel";
 import { AppHeader } from "@/components/app-shell/app-header";
 import { BottomNav } from "@/components/app-shell/bottom-nav";
 
+// Per-user shell: always render against the request's own session, so one
+// user's header balance / page data is never cached and shown to another.
+export const dynamic = "force-dynamic";
+
 export default async function AppLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
