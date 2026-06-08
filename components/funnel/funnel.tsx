@@ -189,10 +189,43 @@ export function Funnel({
           Spend your million. Shape your ROI.
         </h1>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-          Back the agents you&apos;d actually deploy. The more you back, the
-          stronger your signal - and your set-up saves automatically.
+          You&apos;ve got €1,000,000 to back the procurement agents you believe in.
         </p>
       </header>
+
+      {/* How it works - plain-language guide for first-timers */}
+      <section
+        className="lio-rise lio-rise-1 rounded-lg border border-border bg-card p-5 shadow-lio"
+        data-agent="s2c"
+      >
+        <p className="label-uppercase mb-4 text-muted-foreground">How it works</p>
+        <ol className="space-y-3.5">
+          {[
+            [
+              "Back what you'd deploy",
+              "Spend your €1,000,000 on the agents you'd actually put to work - the more you back one, the stronger your vote for it.",
+            ],
+            [
+              "Watch the ROI, live",
+              "Your set-up models the yearly hard savings and the FTEs it would free up, updating as you go.",
+            ],
+            [
+              "Send it to our team",
+              "Happy with your set-up? Request a demo and we follow up on exactly the agents you picked.",
+            ],
+          ].map(([title, body], i) => (
+            <li key={i} className="flex gap-3">
+              <span className="display-num flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-agent/12 text-xs text-agent">
+                {i + 1}
+              </span>
+              <div className="min-w-0">
+                <p className="text-sm leading-tight text-foreground">{title}</p>
+                <p className="mt-0.5 text-xs leading-snug text-muted-foreground">{body}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
 
       {/* Budget meter */}
       <div className="lio-rise lio-rise-1 rounded-lg border border-border bg-card p-5 shadow-lio" data-agent="s2c">
@@ -221,7 +254,7 @@ export function Funnel({
             Indicative annual impact
           </span>
           <span className="flex items-center gap-1.5 text-[0.62rem] font-medium tracking-wide text-agent">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-agent" /> LIVE
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-agent" /> Live
           </span>
         </div>
         <div className="mt-4 grid grid-cols-2 gap-4" aria-live="polite" aria-atomic="true">
@@ -252,7 +285,7 @@ export function Funnel({
         {items.length === 0 ? (
           <div className="rounded-lg border border-dashed border-border bg-card/40 px-5 py-8 text-center">
             <p className="text-sm text-muted-foreground">
-              Your set-up is empty. Add the agents you&apos;d put to work.
+              Nothing backed yet - tap <span className="text-foreground">Add agents</span> below to start spending your €1,000,000.
             </p>
           </div>
         ) : (
