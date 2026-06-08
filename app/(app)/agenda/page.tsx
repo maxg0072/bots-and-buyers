@@ -60,11 +60,6 @@ export default function AgendaPage() {
                       {s.speaker && <span>{s.speaker}</span>}
                       {s.location && <span>· {s.location}</span>}
                     </div>
-                    {s.description && (
-                      <p className="mt-1.5 text-xs leading-snug text-muted-foreground/80">
-                        {s.description}
-                      </p>
-                    )}
                   </div>
                 </li>
               );

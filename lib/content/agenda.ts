@@ -36,7 +36,7 @@ export const AGENDA: AgendaDay[] = [
     date: "2026-06-11",
     label: "Thursday · 11 June 2026",
     sessions: [
-      { id: "s1", start: "09:00", end: "10:00", title: "Doors open · Check-in", location: "Frankfurt · Agentic World", kind: "networking", description: "Coffee, pretzels & croissants · cloakroom · info point." },
+      { id: "s1", start: "09:00", end: "10:00", title: "Doors open · Check-in", location: "Frankfurt Room · Agentic World", kind: "networking", description: "Coffee, pretzels & croissants · cloakroom · info point." },
       { id: "s2", start: "10:00", end: "11:30", title: "Opening speech by Vladi", speaker: "Vladi", location: "Stage Area", kind: "keynote", description: "The key message (90 min)." },
       { id: "s3", start: "11:30", end: "17:10", title: "Agentic World walkthrough", location: "Agentic World", kind: "demo", description: "Explore the agents reshaping procurement, all afternoon." },
       { id: "s4", start: "12:00", end: "", title: "Flying buffet (lunch)", location: "Agentic World", kind: "break", description: "From 12:00." },
