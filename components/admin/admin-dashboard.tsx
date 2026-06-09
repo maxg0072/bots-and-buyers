@@ -7,6 +7,8 @@ import {
   ReceiptText,
   LineChart,
   Phone,
+  Cpu,
+  Compass,
   Trophy,
   type LucideIcon,
 } from "lucide-react";
@@ -21,6 +23,8 @@ const REQ_META: Record<string, { label: string; icon: LucideIcon }> = {
   offer: { label: "Offer", icon: ReceiptText },
   analysis: { label: "Analysis", icon: LineChart },
   callback: { label: "Callback", icon: Phone },
+  fde: { label: "FDE", icon: Cpu },
+  assessment: { label: "Assessment", icon: Compass },
 };
 
 function Stat({ label, value, sub }: { label: string; value: string; sub?: string }) {

@@ -6,6 +6,7 @@ import {
   CalendarClock,
   MapPinned,
   GraduationCap,
+  Handshake,
   ArrowRight,
   type LucideIcon,
 } from "lucide-react";
@@ -16,13 +17,14 @@ import { formatEur, formatEurFull, ONE_MILLION } from "@/lib/format";
 
 type Cat = "services" | "srm" | "p2p" | "s2c" | "p2s" | "others";
 
-const HUB: { href: string; label: string; desc: string; icon: LucideIcon; cat: Cat }[] = [
+const HUB: { href: string; label: string; desc: string; icon: LucideIcon; cat: Cat; wide?: boolean }[] = [
   { href: "/agents", label: "Agent Booklet", desc: "All 32 agents, six worlds", icon: Bot, cat: "p2p" },
   { href: "/me", label: "My set-up", desc: "Your agents & ROI", icon: Sparkles, cat: "services" },
   { href: "/agenda", label: "Agenda", desc: "What's on, and when", icon: CalendarClock, cat: "srm" },
   { href: "/workshops", label: "Workshops", desc: "Deep-dives & topics", icon: GraduationCap, cat: "s2c" },
   { href: "/map", label: "Lageplan", desc: "Find your way around", icon: MapPinned, cat: "others" },
   { href: "/millionaire", label: "Wer wird Millionär", desc: "Test your procurement IQ", icon: Trophy, cat: "p2s" },
+  { href: "/connect", label: "Take it further", desc: "Demo, FDE motion or an agentic assessment", icon: Handshake, cat: "services", wide: true },
 ];
 
 export default async function HomePage() {
@@ -83,12 +85,12 @@ export default async function HomePage() {
       <section className="space-y-4">
         <div className="lio-hairline" />
         <div className="grid grid-cols-2 gap-3">
-          {HUB.map(({ href, label, desc, icon: Icon, cat }, i) => (
+          {HUB.map(({ href, label, desc, icon: Icon, cat, wide }, i) => (
             <Link
               key={href}
               href={href}
               data-agent={cat}
-              className={`lio-accent-rail shadow-lio lio-rise group relative flex flex-col gap-3 rounded-md border border-border bg-card p-4 pl-5 transition-transform hover:-translate-y-0.5 lio-rise-${Math.min(i + 1, 5)}`}
+              className={`lio-accent-rail shadow-lio lio-rise group relative flex flex-col gap-3 rounded-md border border-border bg-card p-4 pl-5 transition-transform hover:-translate-y-0.5 lio-rise-${Math.min(i + 1, 5)}${wide ? " col-span-2" : ""}`}
             >
               <span className="flex h-9 w-9 items-center justify-center rounded-md bg-agent/10 text-agent">
                 <Icon className="h-5 w-5" strokeWidth={1.6} />
