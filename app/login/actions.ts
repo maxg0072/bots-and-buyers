@@ -50,6 +50,11 @@ export async function loginAction(
   const email = parsed.data.email.toLowerCase();
   const { name, company, isExistingCustomer, marketingConsent } = parsed.data;
 
+  // Consent is required to enter (backstop for the required checkbox on the form).
+  if (!marketingConsent) {
+    return { error: "Please agree to be contacted so we can follow up after the event." };
+  }
+
   let participantId: string;
   try {
     const participant = await db.participant.upsert({
