@@ -353,3 +353,14 @@
 /* Hide scrollbars on horizontal scrollers while keeping them scrollable */
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Marquee / flowing announcement ticker (track holds repeated copies; -50%
+   shift loops seamlessly). */
+@keyframes lio-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.lio-marquee { animation: lio-marquee 28s linear infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .lio-marquee { animation: none; }
+}

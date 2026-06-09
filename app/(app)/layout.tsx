@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { getCurrentParticipant, participantIsAdmin } from "@/lib/auth";
 import { getBudgetState } from "@/lib/funnel";
 import { AppHeader } from "@/components/app-shell/app-header";
+import { AnnouncementBar } from "@/components/app-shell/announcement-bar";
 import { BottomNav } from "@/components/app-shell/bottom-nav";
 
 // Per-user shell: always render against the request's own session, so one
@@ -24,6 +25,7 @@ export default async function AppLayout({
       >
         Skip to content
       </a>
+      <AnnouncementBar />
       <AppHeader balance={balance} />
       <main
         id="main"

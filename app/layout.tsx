@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://botsandbuyers.app"),
   title: {
     default: "Bots & Buyers - Lio Agentic World",
     template: "%s · Bots & Buyers",
@@ -22,6 +23,8 @@ export const metadata: Metadata = {
     description:
       "Build your perfect agent set-up and see the ROI - live. The Lio experience.",
     type: "website",
+    url: "https://botsandbuyers.app",
+    siteName: "Bots & Buyers",
   },
   // Favicon/app icon is provided by app/icon.svg (Next file convention).
 };
