@@ -147,7 +147,7 @@ export default async function MePage() {
               <Trophy className="h-5 w-5" />
             </span>
             <span>
-              <span className="block text-sm text-foreground">Wer wird Millionär</span>
+              <span className="block text-sm text-foreground">Who Wants to Be a Millionaire?</span>
               <span className="block text-xs text-muted-foreground">
                 {bestScore != null ? `Best: ${fmtPrize(bestScore)} · ${plays} play${plays === 1 ? "" : "s"}` : "Not played yet"}
               </span>

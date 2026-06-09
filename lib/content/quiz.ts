@@ -1,5 +1,5 @@
 /* =============================================================================
-   "Wer wird Millionär" - bilingual (DE/EN) procurement quiz + game config.
+   "Who Wants to Be a Millionaire?" - procurement quiz + game config (shown in English).
    General, fun procurement knowledge (NOT Lio-specific). ✏️ Add/adjust freely.
    ============================================================================= */
 

@@ -109,7 +109,7 @@ export function Millionaire({
   meId?: string;
 }) {
   const [phase, setPhase] = useState<Phase>("intro");
-  const [locale, setLocale] = useState<Locale>("de");
+  const [locale] = useState<Locale>("en");
   const [name, setName] = useState("");
   const [qs, setQs] = useState<QuizQuestion[]>([]);
   const [level, setLevel] = useState(0);
@@ -238,7 +238,7 @@ export function Millionaire({
           {t("welcome")}
         </p>
         <h1 className="lio-rise lio-rise-1 mt-5 text-4xl leading-[1.05] text-foreground">
-          Wer wird <span className="lio-mega">Millionär</span>
+          Who wants to be a <span className="lio-mega">Millionaire?</span>
         </h1>
 
         <div className="lio-rise lio-rise-2 mt-7 w-full max-w-xs space-y-3">
@@ -248,20 +248,6 @@ export function Millionaire({
             placeholder={t("name_ph")}
             className="h-11 w-full rounded-md border border-border bg-card px-4 text-center text-sm outline-none focus:border-agent"
           />
-          <div className="flex justify-center gap-2">
-            {(["de", "en"] as Locale[]).map((l) => (
-              <button
-                key={l}
-                onClick={() => setLocale(l)}
-                className={cn(
-                  "rounded-md border px-4 py-1.5 text-xs font-medium uppercase tracking-wider transition-colors",
-                  locale === l ? "border-agent bg-agent/10 text-agent" : "border-border text-muted-foreground",
-                )}
-              >
-                {l}
-              </button>
-            ))}
-          </div>
           <button
             onClick={start}
             className="h-12 w-full rounded-md bg-primary text-sm font-medium text-primary-foreground transition-transform active:scale-[0.99]"

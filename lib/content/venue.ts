@@ -19,7 +19,7 @@ export const MAP_IMAGE: string | null = null;
 export const VENUE_IS_PLACEHOLDER = true;
 
 export const POIS: Poi[] = [
-  { id: "stage", label: "Main Stage", note: "Keynotes, demos & the Wer-wird-Millionär finale" },
+  { id: "stage", label: "Main Stage", note: "Keynotes, demos & the Millionaire quiz finale" },
   { id: "workshops", label: "Workshop Rooms A-C", note: "Hands-on sessions" },
   { id: "demos", label: "Demo Booths", note: "See the agents up close" },
   { id: "lounge", label: "Networking Lounge", note: "Coffee, drinks & conversations" },

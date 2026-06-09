@@ -7,7 +7,6 @@ import {
   MapPinned,
   GraduationCap,
   Handshake,
-  Mail,
   ArrowRight,
   type LucideIcon,
 } from "lucide-react";
@@ -24,7 +23,7 @@ const HUB: { href: string; label: string; desc: string; icon: LucideIcon; cat: C
   { href: "/agenda", label: "Agenda", desc: "What's on, and when", icon: CalendarClock, cat: "srm" },
   { href: "/workshops", label: "Workshops", desc: "Deep-dives & topics", icon: GraduationCap, cat: "s2c" },
   { href: "/map", label: "Lageplan", desc: "Find your way around", icon: MapPinned, cat: "others" },
-  { href: "/millionaire", label: "Wer wird Millionär", desc: "Test your procurement IQ", icon: Trophy, cat: "p2s" },
+  { href: "/millionaire", label: "Millionaire Quiz", desc: "Test your procurement IQ", icon: Trophy, cat: "p2s" },
   { href: "/connect", label: "Take it further", desc: "Demo, FDE motion or an agentic assessment", icon: Handshake, cat: "services", wide: true },
 ];
 
@@ -33,19 +32,6 @@ export default async function HomePage() {
   const firstName = participant?.name?.split(/\s+/)[0];
   const snapshot = participant ? await getSetupSnapshot(participant.id) : null;
   const hasSetup = !!snapshot && snapshot.items.length > 0;
-
-  // TODO: replace "xxxx" with the real Bots & Buyers offer (e.g. "3 months free").
-  const dealOffer = "xxxx";
-  const wishlist = hasSetup
-    ? snapshot!.items.map((i) => `- ${i.name}`).join("\n")
-    : "- (add the agents you're most interested in)";
-  const dealMailto =
-    "mailto:info@lio.ai?subject=" +
-    encodeURIComponent("Bots & Buyers - my agent wishlist") +
-    "&body=" +
-    encodeURIComponent(
-      `Hi Lio team,\n\nI'd love to take you up on the Bots & Buyers deal. Here's my agent wishlist:\n\n${wishlist}\n\nLooking forward to a call with one of your engineers!`,
-    );
 
   return (
     <div className="space-y-8">
@@ -117,23 +103,6 @@ export default async function HomePage() {
           ))}
         </div>
       </section>
-
-      {/* Special Bots & Buyers deal - email your agent wishlist to info@lio.ai */}
-      <a
-        href={dealMailto}
-        data-agent="p2s"
-        className="lio-rise lio-surface-light block rounded-lg p-6 transition-transform active:scale-[0.99]"
-      >
-        <p className="label-uppercase text-muted-foreground">Special Bots &amp; Buyers deal</p>
-        <p className="display-num mt-2 text-3xl leading-none text-foreground">Get {dealOffer}</p>
-        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-          Email your agent wishlist to info@lio.ai - we&apos;ll reach out and set you up with a call
-          with one of our engineers.
-        </p>
-        <span className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-agent px-4 py-2 text-sm font-medium text-agent-foreground">
-          <Mail className="h-4 w-4" /> Email your wishlist
-        </span>
-      </a>
     </div>
   );
 }

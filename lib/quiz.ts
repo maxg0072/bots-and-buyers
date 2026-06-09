@@ -10,7 +10,7 @@ export interface QuizLeaderRow {
 }
 
 /**
- * Global "Wer wird Millionär" ranking - each player's BEST run, top N, across
+ * Global "Who Wants to Be a Millionaire?" ranking - each player's BEST run, top N, across
  * all attendees. Ordered by prize, then by correct answers. Polled live by the
  * quiz screen so everyone sees the board update as people play.
  */

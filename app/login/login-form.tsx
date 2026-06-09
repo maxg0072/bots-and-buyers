@@ -86,7 +86,7 @@ export function LoginForm() {
         <span className="text-xs leading-snug text-muted-foreground">
           Lio may contact me about my set-up and follow up after the event. See the{" "}
           <a
-            href="https://lio.ai/privacy"
+            href="https://lio.ai/datenschutz"
             target="_blank"
             rel="noopener noreferrer"
             className="text-foreground underline underline-offset-2"
